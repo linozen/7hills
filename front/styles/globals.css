@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* local fonts */
+@font-face {
+  font-family: "Merriweather";
+  src: local("Merriweather"),
+    url(/fonts/Merriweather-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Anisette Light";
+  src: local("Anisette"), url(/fonts/Anisette-Light.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Anisette Medium";
+  src: local("Anisette"), url(/fonts/Anisette-Medium.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Anisette Bold";
+  src: local("Anisette"), url(/fonts/Anisette-Bold.woff2) format("woff2");
+}
+
+/* nuka-carousel ui fixes */
+.slider-slide,
+.slider-list {
+  height: 100% !important;
+}
+
+.slider-control {
+  @apply hidden md:block;
+}
+
+.button {
+  @apply border py-3 px-4 lg:px-8 duration-500 transition-colors mb-6 lg:mb-0;
+}
+
+.back-to-top {
+  @apply mx-2 border py-1 px-1 duration-500 transition-colors mb-6 lg:mb-0 font-light;
+}
+
+.slider-control-centerleft button {
+  color: #dec580 !important;
+}
+
+.slider-control-centerright button {
+  color: #dec580 !important;
+}
+
+/* grayscale images */
+.grayscale {
+  filter: grayscale(1);
+}
+
+/* modal fix for medium viewport */
+.modal-fix {
+  margin-left: calc(100vw - 100%);
+}
+
+/* utiliy stuff */
+.language-switcher {
+  @apply text-2xl lg:font-light lg:text-lg px-1 border-solid transition-colors duration-300 border;
+}
+
+/* /events markdown formatting */
+.markdown-events {
+  @apply text-lg text-blood-500;
+}
+
+.markdown-events > h1 {
+  @apply text-3xl md:text-5xl mt-6 pb-4;
+}
+
+.markdown-events > p {
+  @apply font-serif mb-3;
+}
+
+.markdown-events > p > a {
+  @apply underline;
+}
+
+.markdown-events > hr {
+  @apply border-blue-500 mb-3;
+}
+
+.markdown-events > ul {
+  @apply list-disc list-outside ml-6 mb-3;
+}
+
+.markdown-events > ul > li {
+  @apply font-serif;
+}
+
+/* /local markdown formatting */
+.markdown-local {
+  @apply text-gold-500;
+}
+
+.markdown-local > h1 {
+  @apply font-sans text-xl pt-2;
+}
+
+.markdown-local > p {
+  @apply font-serif mb-3;
+}
+
+.markdown-local > p > a {
+  @apply underline;
+}
+
+.markdown-local > hr {
+  @apply border-blue-500 mb-3;
+}
+
+.markdown-local > ul {
+  @apply list-disc list-outside ml-6 mb-3;
+}
+
+.markdown-local > ul > li {
+  @apply font-serif;
+}

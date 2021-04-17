@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "producers",
+  "info": {
+    "name": "Producers",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title_en": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title_de": {
+      "type": "string"
+    },
+    "location_en": {
+      "type": "string"
+    },
+    "people_en": {
+      "type": "string"
+    },
+    "people_de": {
+      "type": "string"
+    },
+    "location_de": {
+      "type": "string"
+    },
+    "distance": {
+      "type": "integer"
+    },
+    "products_en": {
+      "type": "richtext"
+    },
+    "products_de": {
+      "type": "richtext"
+    },
+    "coverImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "experience_de": {
+      "type": "string"
+    },
+    "experience_en": {
+      "type": "string"
+    },
+    "imageSide": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "Posts",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title_en": {
+      "type": "string"
+    },
+    "content_en": {
+      "type": "richtext"
+    },
+    "excerpt_en": {
+      "type": "text"
+    },
+    "coverImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "date": {
+      "type": "date"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "title_de": {
+      "type": "string"
+    },
+    "excerpt_de": {
+      "type": "text"
+    },
+    "content_de": {
+      "type": "richtext"
+    }
+  }
+}

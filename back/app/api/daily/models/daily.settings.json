@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "daily",
+  "info": {
+    "name": "Menu: Daily",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title_de": {
+      "type": "string"
+    },
+    "content_de": {
+      "type": "richtext"
+    },
+    "title_en": {
+      "type": "string"
+    },
+    "content_en": {
+      "type": "richtext"
+    }
+  }
+}
