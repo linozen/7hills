@@ -35,7 +35,8 @@
       "type": "date"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "title_en"
     },
     "title_de": {
       "type": "string"
