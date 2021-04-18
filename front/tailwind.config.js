@@ -9,6 +9,9 @@ module.exports = {
       lg: '1120px',
     },
     extend: {
+      zIndex: {
+        '-10': '-10',
+      },
       typography: {
         DEFAULT: {
           css: {
@@ -26,6 +29,13 @@ module.exports = {
             },
             p: {
               fontFamily: 'Merriweather'
+            },
+            strong: {
+              color: '#d3ae65',
+            },
+            a: {
+              color: '#d3ae65',
+              textDecoration: 'underline',
             },
             hr: {
               borderColor: '#9F4800',
@@ -62,5 +72,6 @@ module.exports = {
     // eslint-disable-next-line global-require
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    require('tailwind-gradient-mask-image')
   ],
 };

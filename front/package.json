@@ -33,6 +33,7 @@
     "remark": "12.0.0",
     "remark-html": "11.0.2",
     "swiper": "6.4.15",
+    "tailwind-gradient-mask-image": "^0.2.0",
     "tailwindcss": "2.0.3",
     "webpack": "^4.46.0"
   },

@@ -7098,6 +7098,11 @@ table@^6.0.4:
     slice-ansi "^4.0.0"
     string-width "^4.2.0"
 
+tailwind-gradient-mask-image@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/tailwind-gradient-mask-image/-/tailwind-gradient-mask-image-0.2.0.tgz#4e1676c93bb3c0b7cf3c858376558a6ce4138e04"
+  integrity sha512-4h/FziIXPkClvqbx9ZlBj2xMwfUyh49rNkABiJUR0/cG/5udwbagewGT2Ju7+uxLiWen5BHVgzA0PZjfwrQfaQ==
+
 tailwindcss@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.0.3.tgz#f8d07797d1f89dc4b171673c26237b58783c2c86"
