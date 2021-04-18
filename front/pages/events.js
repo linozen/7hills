@@ -39,8 +39,12 @@ export default function Events(props) {
 
         <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 bg-rose-500 py-10">
 
-          <div className="bg-rose-500">
-            <Gallery photos={props.photos} onClick={(event) => openLightboxOnSource(event.target.src)} />
+          <div className="bg-rose-500 lg:pt-2 mx-4 ">
+            <Gallery
+              direction="column"
+              margin={5}
+              photos={props.photos}
+              onClick={(event) => openLightboxOnSource(event.target.src)} />
           </div>
 
           <FsLightbox
@@ -63,8 +67,8 @@ export default function Events(props) {
                 link="/menu"
               />
             </div>
-            <div className="lg:hidden text-3xl md:text-5xl">
-              What's expecting you ...
+            <div className="lg:hidden text-3xl md:text-5xl pb-3">
+              {t("What's expecting you")}
             </div>
           </div>
 

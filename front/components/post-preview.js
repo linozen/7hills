@@ -8,7 +8,6 @@ export default function PostPreview({
   coverImage,
   date,
   excerpt,
-  author,
   slug,
 }) {
   return (
@@ -17,7 +16,7 @@ export default function PostPreview({
         <CoverImage slug={slug} title={title} url={coverImage.url} />
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
+        <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
@@ -25,7 +24,6 @@ export default function PostPreview({
         <Date dateString={date} />
       </div>
       <p className="font-serif text-lg leading-relaxed mb-4">{excerpt}</p>
-      <Avatar name={author.name} picture={author.picture} />
     </div>
   )
 }

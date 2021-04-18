@@ -25,15 +25,17 @@ export default function Index() {
             <Carousel
               autoplay={true}
               autoplayInterval={6000}
-              speed={1500}
+              speed={1200}
               pauseOnHover={true}
               renderBottomCenterControls={({ currentSlide }) => null}
               defaultControlsConfig={{
+                nextButtonText: ">",
+                prevButtonText: "<",
                 nextButtonClassName: "slider-control",
                 prevButtonClassName: "slider-control",
               }}
-              // wrapAround={true}
-              transitionMode="fade"
+            // wrapAround={true}
+            // transitionMode="fade"
             >
               {/* Image slide with button on medium and small viewports */}
               <div className="h-full">
@@ -61,6 +63,7 @@ export default function Index() {
                 layout="fill"
                 objectFit="cover"
                 className="object-center"
+                priority={true}
               />
               {/* Image slide */}
               <Image
@@ -68,6 +71,7 @@ export default function Index() {
                 layout="fill"
                 objectFit="cover"
                 className="object-center"
+                priority={true}
               />
             </Carousel>
           </div>

@@ -37,7 +37,7 @@ export default function ImageBlock({ props, api_url }) {
                             {products}
                         </ReactMarkdown>
                     </div>
-                    <div className="md:px-10 lg:max-w-lg lg:w-full md:w-1/2">
+                    <div className="lg:max-w-lg lg:w-full md:w-1/2">
                         <div
                             className="relative shadow-2xl w-full h-96 md:h-80 lg:h-96 border-2 border-gold-500"
                             data-aos={`${imageSide ? 'fade-right' : 'fade-left'}`}
