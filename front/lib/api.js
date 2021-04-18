@@ -46,6 +46,20 @@ export async function getProducers() {
   return data;
 }
 
+export async function getSoul() {
+  const data = fetchAPI(`
+    query {
+      soul {
+        title_en
+        title_de
+        content_en
+        content_de
+      }
+    }
+  `);
+  return data;
+}
+
 export async function getEvent() {
   const data = fetchAPI(`
     query {
@@ -108,18 +122,14 @@ export async function getAllPostsForHome() {
   const data = await fetchAPI(`
     query Posts($where: JSON){
       posts(sort: "date:desc", limit: 10) {
-        title
+        title_en
+        title_de
+        excerpt_en
+        excerpt_de
         slug
-        excerpt
         date
         coverImage {
           url
-        }
-        author {
-          name
-          picture {
-            url
-          }
         }
       }
     }
@@ -132,43 +142,35 @@ export async function getPostAndMorePosts(slug) {
     `
   query PostBySlug($where: JSON, $where_ne: JSON) {
     posts(where: $where) {
-      title
+      title_en
+      title_de
+      excerpt_en
+      excerpt_de
+      content_en
+      content_de
       slug
-      content
       date
-      ogImage: coverImage{
-        url
-      }
       coverImage {
         url
-      }
-      author {
-        name
-        picture {
-          url
-        }
       }
     }
 
     morePosts: posts(sort: "date:desc", limit: 2, where: $where_ne) {
-      title
+      title_en
+      title_de
+      excerpt_en
+      excerpt_de
+      content_en
+      content_de
       slug
-      excerpt
       date
       coverImage {
         url
-      }
-      author {
-        name
-        picture {
-          url
-        }
       }
     }
   }
   `,
     {
-      preview,
       variables: {
         where: {
           slug,
