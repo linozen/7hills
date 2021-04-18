@@ -3,8 +3,8 @@ version: "3"
 
 services:
   strapi:
-    build: back/strapi/app
-    image: 7hills-front:1.0.0-beta
+    build: ./back/strapi/app
+    image: 7hills-back:1.0.0-beta
     container_name: 7hills-back
     restart: always
     ports:
@@ -26,7 +26,7 @@ services:
       - "traefik.http.services.strapi.loadbalancer.server.port=1337"
 
   next:
-    build: front
+    build: ./front
     depends_on:
       - strapi
     image: 7hills-front:1.0.0-beta

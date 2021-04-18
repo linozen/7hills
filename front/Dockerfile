@@ -1,16 +1,21 @@
+# base on buster-slim
 FROM node:14-buster-slim AS base
 WORKDIR /base
+RUN apt-get update && apt-get upgrade -y
+
+# dependencies
 COPY package*.json ./
 RUN npm install
 COPY . .
 
+# build
 FROM base AS build
 ENV NODE_ENV=production
 WORKDIR /build
 COPY --from=base /base ./
 RUN npm run build
 
-# Production image, copy all the files and run next
+# production
 FROM build AS production
 WORKDIR /home/node/app
 ENV NODE_ENV=production
@@ -21,11 +26,6 @@ COPY --from=build --chown=node:node /build/public ./public
 COPY --from=build --chown=node:node /build/.next ./.next
 COPY --from=build --chown=node:node /build/node_modules ./node_modules
 USER node
-
-EXPOSE 3000
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry.
 RUN npx next telemetry disable
-
+EXPOSE 3000
 CMD ["node_modules/.bin/next", "start"]

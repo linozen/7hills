@@ -1,6 +1,7 @@
 # base on buster-slim
 FROM node:14-buster-slim AS base
 WORKDIR /srv/app
+RUN apt-get update && apt-get upgrade -y
 
 # dependencies
 FROM base AS dependencies
@@ -15,7 +16,7 @@ ENV NODE_ENV production
 ENV DATABASE_FILENAME /home/node/app/data/data.db
 RUN yarn build --clean
 
-# release
+# production
 FROM build as release
 COPY --chown=1000:1000 --from=build /srv/app /home/node/app
 USER node
