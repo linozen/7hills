@@ -5,9 +5,6 @@ const prod = process.env.NODE_ENV === "production";
 
 module.exports = withPWA({
   i18n,
-  env: {
-    STRAPI_API_URL: 'https://api.linus.cx'
-  },
   images: {
     domains: ["localhost", "api.linus.cx", "linus.cx"]
   },
