@@ -10,8 +10,8 @@ services:
     ports:
       - "1337:1337"
     volumes:
-      - ./7hills/data:/home/node/app/data
-      - ./7hills/uploads:/home/node/app/public/uploads
+      - /home/deployr/7hills/data:/home/node/app/data
+      - /home/deployr/7hills/uploads:/home/node/app/public/uploads
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
