@@ -29,4 +29,4 @@ COPY --from=build --chown=node:node /build/node_modules ./node_modules
 USER node
 RUN npx next telemetry disable
 EXPOSE 3001
-CMD ["node_modules/.bin/next", "start", "-p 3001"]
+CMD ["node_modules/.bin/next", "start", "-p", "3001"]
