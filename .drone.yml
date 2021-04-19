@@ -19,7 +19,7 @@ steps:
 - name: deploy frontend
   image: docker/compose:1.29.1
   environment:
-    SPRAPI_API_URL: https://api.linus.cx
+    STRAPI_API_URL: https://api.linus.cx
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
