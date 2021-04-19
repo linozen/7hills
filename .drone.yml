@@ -7,16 +7,23 @@ workspace:
   path: /home/deployr/7hills
 
 steps:
-- name: deploy
+- name: deploy backend
   image: docker/compose:1.29.1
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker-compose -f docker-compose.back build --pull
-  - docker-compose -f docker-compose.back up -d
-  - docker-compose -f docker-compose.front build --pull
-  - docker-compose -f docker-compose.front up -d
+  - docker-compose -f docker-compose.back.yml build --pull
+  - docker-compose -f docker-compose.back.yml up -d
+
+- name: deploy frontend
+  image: docker/compose:1.29.1
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - docker-compose -f docker-compose.front.yml build --pull
+  - docker-compose -f docker-compose.front.yml up -d
 
 
 volumes:
