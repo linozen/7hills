@@ -13,8 +13,10 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker-compose build --pull
-  - docker-compose up -d
+  - docker-compose -f docker-compose.back build --pull
+  - docker-compose -f docker-compose.back up -d
+  - docker-compose -f docker-compose.front build --pull
+  - docker-compose -f docker-compose.front up -d
 
 
 volumes:

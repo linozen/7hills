@@ -2,33 +2,8 @@
 version: "3"
 
 services:
-  strapi:
-    build: ./back/app
-    image: 7hills-back:1.0.0-beta
-    container_name: 7hills-back
-    restart: always
-    ports:
-      - "1337:1337"
-    volumes:
-      - ./7hills/data:/home/node/app/data
-      - ./7hills/uploads:/home/node/app/public/uploads
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.strapi-http.entrypoints=http"
-      - "traefik.http.routers.strapi-http.rule=Host(`api.sevenhills-restaurant.de`)"
-      - "traefik.http.routers.strapi-http.middlewares=strapi-https@docker"
-      - "traefik.http.routers.strapi.entrypoints=https"
-      - "traefik.http.routers.strapi.rule=Host(`7hills-strapi.sehn.dev`)"
-      - "traefik.http.routers.strapi.tls=true"
-      - "traefik.http.routers.strapi.tls.certresolver=default"
-      - "traefik.http.routers.strapi.middlewares=secHeaders@file"
-      - "traefik.http.services.strapi.loadbalancer.server.port=1337"
-
   next:
     build: ./front
-    depends_on:
-      - strapi
     image: 7hills-front:1.0.0-beta
     container_name: 7hills-front
     restart: always
