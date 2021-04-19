@@ -3,15 +3,15 @@ version: "3"
 
 services:
   strapi:
-    build: ./back/strapi/app
+    build: ./back/app
     image: 7hills-back:1.0.0-beta
     container_name: 7hills-back
     restart: always
     ports:
       - "1337:1337"
     volumes:
-      - /home/deployr/7hills/data:/home/node/app/data
-      - /home/deployr/7hills/uploads:/home/node/app/public/uploads
+      - ./7hills/data:/home/node/app/data
+      - ./7hills/uploads:/home/node/app/public/uploads
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
