@@ -9,7 +9,7 @@ module.exports = withPWA({
     STRAPI_API_URL: 'https://api.linus.cx'
   },
   images: {
-    domains: ["localhost", "https://api.linus.cx"]
+    domains: ["localhost", "api.linus.cx", "linus.cx"]
   },
   pwa: {
     disable: prod ? false : true,
