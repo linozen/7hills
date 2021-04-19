@@ -39,7 +39,7 @@
 }
 
 .back-to-top {
-  @apply mx-2 border py-1 px-1 duration-500 transition-colors mb-6 lg:mb-0 font-light;
+  @apply relative mx-2 border py-1 px-1 duration-500 transition-colors mb-6 lg:mb-0 font-light z-20;
 }
 
 html {

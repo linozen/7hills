@@ -7,6 +7,7 @@ import { useTranslation, withTranslation, Trans } from "next-i18next";
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import ImageBlock from "../components/image-block"
+import BackToTop from "@/components/back-to-top";
 
 export default function Local(props) {
   const { t } = useTranslation("common");
@@ -23,6 +24,7 @@ export default function Local(props) {
           <title>Seven Hills Restaurant</title>
         </Head>
         <NavBar />
+        <BackToTop />
 
         {producers.map(p => {
           return (

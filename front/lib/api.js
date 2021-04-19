@@ -118,9 +118,9 @@ export async function getAllPostsWithSlug() {
   return data?.allPosts;
 }
 
-export async function getAllPostsForHome() {
+export async function getAllPostsForSoul() {
   const data = await fetchAPI(`
-    query Posts($where: JSON){
+    query {
       posts(sort: "date:desc", limit: 10) {
         title_en
         title_de
@@ -155,7 +155,7 @@ export async function getPostAndMorePosts(slug) {
       }
     }
 
-    morePosts: posts(sort: "date:desc", limit: 2, where: $where_ne) {
+    morePosts: posts(sort: "date:desc", limit: 3, where: $where_ne) {
       title_en
       title_de
       excerpt_en

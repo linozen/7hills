@@ -1,29 +1,35 @@
-import Avatar from './avatar'
 import Date from './date'
-import CoverImage from './cover-image'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function PostPreview({
   title,
-  coverImage,
+  coverImageUrl,
   date,
   excerpt,
   slug,
 }) {
   return (
-    <div className="m-5">
-      <div className="object-cover mb-5">
-        <CoverImage slug={slug} title={title} url={coverImage.url} />
+    <div className="p-5">
+      <div className="overflow-hidden border border-gold-500 relative h-96 w-full mb-5">
+        <Link as={`/soul/${slug}`} href="/soul/[slug]">
+          <Image
+            src={coverImageUrl}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+          />
+        </Link>
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
+      <h3 className="text-gold-500 text-3xl mb-3 leading-snug">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
-      <div className="text-lg mb-4">
+      <div className="text-xl mb-4 text-gold-500 font-light">
         <Date dateString={date} />
       </div>
-      <p className="font-serif text-lg leading-relaxed mb-4">{excerpt}</p>
+      <p className="font-serif text-gold-500 text-lg leading-relaxed mb-8">{excerpt}</p>
     </div>
   )
 }

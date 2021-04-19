@@ -38,12 +38,15 @@ module.exports = {
               textDecoration: 'underline',
             },
             hr: {
-              borderColor: '#9F4800',
+              borderColor: '#ac5e14',
             },
           },
         },
       },
       colors: {
+        orange: {
+          500: '#ac5e14'
+        },
         rose: {
           500: '#d1a5bc'
         },
@@ -55,8 +58,10 @@ module.exports = {
         },
         olive: {
           500: '#293c2b',
+          600: '#1f2d20',
         },
         gold: {
+          300: '#faf4ba',
           400: '#dec580',
           500: '#d3ae65',
         },
