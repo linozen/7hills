@@ -81,6 +81,7 @@ export default function Events(props) {
 
 export async function getStaticProps({ locale }) {
   const baseUrl = process.env.STRAPI_API_URL;
+  console.log("URLURLURL", baseUrl)
   const data = await getEvent();
   const sources = data.event.galleryImages.map((item) => baseUrl + item.url);
   const photos = data.event.galleryImages.map(item => {

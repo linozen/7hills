@@ -7,6 +7,8 @@ services:
     image: 7hills-front:1.0.0-beta
     container_name: 7hills-front
     restart: always
+    networks:
+      - proxy
     ports:
       - "3000:3000"
     labels:
@@ -38,3 +40,8 @@ services:
       - "traefik.http.routers.next.tls.certresolver=letsencrypt"
       - "traefik.http.routers.next.service=next"
       - "traefik.http.routers.next.middlewares=redirect-to-www"
+
+networks:
+  proxy:
+    external:
+      name: proxy
