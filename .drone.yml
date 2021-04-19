@@ -24,7 +24,7 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  # - docker-compose -f docker-compose.front.yml build --pull
+  - docker-compose -f docker-compose.front.yml build --pull
   - docker-compose -f docker-compose.front.yml up -d
 
 
