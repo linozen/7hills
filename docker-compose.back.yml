@@ -21,6 +21,6 @@ services:
       - "traefik.http.routers.strapi.entrypoints=https"
       - "traefik.http.routers.strapi.rule=Host(`api.linus.cx`)"
       - "traefik.http.routers.strapi.tls=true"
-      - "traefik.http.routers.strapi.tls.certresolver=default"
+      - "traefik.http.routers.strapi.tls.certresolver=letsencrypt"
       - "traefik.http.routers.strapi.middlewares=secHeaders@file"
       - "traefik.http.services.strapi.loadbalancer.server.port=1337"

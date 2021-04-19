@@ -35,6 +35,6 @@ services:
       - "traefik.http.routers.next.rule=Host(`linus.cx`,`www.linus.cx`)"
       - "traefik.http.routers.next.entrypoints=https"
       - "traefik.http.routers.next.tls=true"
-      - "traefik.http.routers.next.tls.certresolver=default"
+      - "traefik.http.routers.next.tls.certresolver=letsencrypt"
       - "traefik.http.routers.next.service=next"
       - "traefik.http.routers.next.middlewares=redirect-to-www"
