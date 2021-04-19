@@ -10,16 +10,16 @@ services:
     ports:
       - "1337:1337"
     volumes:
-      - ./7hills/data:/home/node/app/data
-      - ./7hills/uploads:/home/node/app/public/uploads
+      - ./data:/home/node/app/data
+      - ./uploads:/home/node/app/public/uploads
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
       - "traefik.http.routers.strapi-http.entrypoints=http"
-      - "traefik.http.routers.strapi-http.rule=Host(`api.sevenhills-restaurant.de`)"
+      - "traefik.http.routers.strapi-http.rule=Host(`api.linus.cx`)"
       - "traefik.http.routers.strapi-http.middlewares=strapi-https@docker"
       - "traefik.http.routers.strapi.entrypoints=https"
-      - "traefik.http.routers.strapi.rule=Host(`7hills-strapi.sehn.dev`)"
+      - "traefik.http.routers.strapi.rule=Host(`api.linus.cx`)"
       - "traefik.http.routers.strapi.tls=true"
       - "traefik.http.routers.strapi.tls.certresolver=default"
       - "traefik.http.routers.strapi.middlewares=secHeaders@file"

@@ -19,7 +19,7 @@ RUN npm run build
 FROM build AS production
 WORKDIR /home/node/app
 ENV NODE_ENV=production
-ENV STRAPI_API_URL=https://api.sevenhills-restaurant.de
+ENV STRAPI_API_URL=https://api.linus.cx
 COPY --from=build --chown=node:node /build/next.config.js ./
 COPY --from=build --chown=node:node /build/next-i18next.config.js ./
 COPY --from=build --chown=node:node /build/public ./public

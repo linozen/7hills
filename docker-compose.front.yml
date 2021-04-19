@@ -32,7 +32,7 @@ services:
       # next traefik setup
       - "traefik.enable=true"
       - "traefik.http.services.next.loadbalancer.server.port=3000"
-      - "traefik.http.routers.next.rule=Host(`sevenhills-restaurant.de`,`www.sevenhills-restaurant.de`)"
+      - "traefik.http.routers.next.rule=Host(`linus.cx`,`www.linus.cx`)"
       - "traefik.http.routers.next.entrypoints=https"
       - "traefik.http.routers.next.tls=true"
       - "traefik.http.routers.next.tls.certresolver=default"
