@@ -10,6 +10,7 @@ COPY . .
 
 # build
 FROM base AS build
+ENV STRAPI_API_URL=https://api.linus.cx
 ENV NODE_ENV=production
 WORKDIR /build
 COPY --from=base /base ./
