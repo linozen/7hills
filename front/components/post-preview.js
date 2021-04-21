@@ -18,6 +18,7 @@ export default function PostPreview({
             layout="fill"
             objectFit="cover"
             objectPosition="center"
+            priority={true}
           />
         </Link>
       </div>

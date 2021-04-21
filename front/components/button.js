@@ -11,8 +11,9 @@ export default function Button(props) {
         <>
             <Link
                 href={link}>
-                <a className={`button ${onEvents ? 'bg-rose-500 border-blood-500 text-blood-500 hover:bg-blood-500  hover:text-rose-500' : 'bg-olive-500 border-gold-500 text-gold-500 hover:bg-gold-400 hover:text-olive-500'}`}
-                >{title}</a>
+                <button className={`button ${onEvents ? 'bg-rose-500 border-blood-500 text-blood-500 hover:bg-blood-500  hover:text-rose-500' : 'bg-olive-500 border-gold-500 text-gold-500 hover:bg-gold-400 hover:text-olive-500'}`}
+                >{title}
+                </button>
             </Link>
         </>
     )

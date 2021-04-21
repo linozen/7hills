@@ -16,9 +16,8 @@ export default function Footer() {
             <Trans i18nKey="TAGLINE">
               We travel the world, but our cheese doesn't. <br></br> Closeness is what counts
             </Trans>
-            {/* {t('TAGLINE')} */}
           </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
+          <div className="flex flex-col lg:flex-row justify-center items-center lg:p-3 lg:w-1/2">
             <Button title={t('BOOK A TABLE')} link="https://opentable.de" />
           </div>
           <Link href="/privacy">

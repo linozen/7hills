@@ -8,7 +8,8 @@ export default function BackToTop() {
     return (
         <>
             <ScrollToTop
-                showUnder={160}
+                showUnder={200}
+                duration={400}
                 style={
                     {
                         position: 'fixed',

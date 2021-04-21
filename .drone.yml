@@ -13,7 +13,7 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  # - docker-compose -f docker-compose.back.yml build --pull
+  - docker-compose -f docker-compose.back.yml build --pull
   - docker-compose -f docker-compose.back.yml up -d
 
 - name: deploy frontend

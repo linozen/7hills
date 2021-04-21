@@ -6,7 +6,7 @@ const prod = process.env.NODE_ENV === "production";
 module.exports = withPWA({
   i18n,
   images: {
-    domains: ["localhost", "api.linus.cx", "linus.cx"]
+    domains: ["localhost", "api.sevenhills-restaurant.de", "sevenhills-restaurant.de"]
   },
   pwa: {
     disable: prod ? false : true,

@@ -6,7 +6,7 @@ import { useTranslation, withTranslation, Trans } from "next-i18next";
 import { getAllPostsForSoul, getSoul } from '../lib/api.js'
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
-import Button from "../components/button";
+import ButtonScroll from "../components/button-scroll";
 import BackToTop from "@/components/back-to-top";
 import ReactMarkdown from "react-markdown";
 import MoreStories from "@/components/more-stories.js";
@@ -34,23 +34,23 @@ export default function Soul(props) {
             <div className="-z-10 flex justify-between items-center flex-col h-full ">
 
               <Image
-                className="gradient-mask-t-10% bottom-inner-shadow"
-                src="/trees2.png"
+                className="bottom-inner-shadow"
+                src="/leaves.png"
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
               />
 
               <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                <span className="glow bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
                   {props.title}
                 </span>
               </div>
 
               <div className="w-full flex justify-center pb-12 lg:pb-24 relative z-10 bottom-inner-shadow">
-                <Button
+                <ButtonScroll
                   title={t("READ MORE")}
-                  link="#soul-content"
+                  link="soul-content"
                 />
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function Soul(props) {
 
         </div>
         <div className="w-full bg-olive-500 pt-12">
-          <div id="soul-content" className="prose prose-xl text-gold-500 px-5 mx-auto">
+          <div id="soul-content" className="prose prose-lg text-gold-500 px-5 mx-auto">
             <ReactMarkdown>
               {props.content}
             </ReactMarkdown>

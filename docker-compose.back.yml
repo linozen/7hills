@@ -16,13 +16,13 @@ services:
       - ./uploads:/home/node/app/public/uploads
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.strapi.rule=Host(`api.linus.cx`)"
+      - "traefik.http.routers.strapi.rule=Host(`api.sevenhills-restaurant.de`)"
       - "traefik.http.routers.strapi.entrypoints=https"
       - "traefik.http.routers.strapi.tls=true"
       - "traefik.http.routers.strapi.tls.certresolver=letsencrypt"
       - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
       - "traefik.http.routers.strapi-http.entrypoints=http"
-      - "traefik.http.routers.strapi-http.rule=Host(`api.linus.cx`)"
+      - "traefik.http.routers.strapi-http.rule=Host(`api.sevenhills-restaurant.de`)"
       - "traefik.http.routers.strapi-http.middlewares=strapi-https@docker"
       - "traefik.http.routers.strapi.middlewares=secHeaders@file"
       - "traefik.http.services.strapi.loadbalancer.server.port=1337"

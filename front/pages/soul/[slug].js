@@ -12,8 +12,8 @@ import Layout from '@/components/layout';
 import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api';
 import PostTitle from '@/components/post-title';
 import Head from 'next/head';
-import ButtonA from '@/components/button-a';
 import Image from 'next/image'
+import ButtonScroll from '@/components/button-scroll'
 import BackToTop from "@/components/back-to-top";
 import ReactMarkdown from "react-markdown";
 
@@ -54,7 +54,7 @@ export default function Post({ post, morePosts }) {
                 <div className="-z-10 flex justify-between items-center flex-col h-full ">
 
                   <Image
-                    className="gradient-mask-t-10% bottom-inner-shadow"
+                    className="bottom-inner-shadow"
                     src={post.coverImageUrl}
                     layout="fill"
                     objectFit="cover"
@@ -62,15 +62,15 @@ export default function Post({ post, morePosts }) {
                   />
 
                   <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                    <span className="glow bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
                       {post.title}
                     </span>
                   </div>
 
                   <div className="w-full flex justify-center pb-12 lg:pb-24 relative z-10 bottom-inner-shadow">
-                    <ButtonA
+                    <ButtonScroll
                       title={t("READ MORE")}
-                      link="#post-content"
+                      link="post-content"
                     />
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export default function Post({ post, morePosts }) {
               </div>
             </div>
             <div className="w-full bg-olive-500 pt-12">
-              <div id="post-content" className="prose prose-xl text-gold-500 px-5 mx-auto">
+              <div id="post-content" className="prose prose-lg text-gold-500 px-5 mx-auto">
                 <ReactMarkdown>
                   {post.content}
                 </ReactMarkdown>

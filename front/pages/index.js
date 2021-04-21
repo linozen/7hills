@@ -38,9 +38,9 @@ export default function Index() {
             // transitionMode="fade"
             >
               {/* Image slide with button on medium and small viewports */}
-              <div className="h-full">
-                <div className="container mx-auto table relative z-10 h-full">
-                  <div className="lg:hidden text-center table-cell align-middle">
+              <div className="h-full ">
+                <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
+                  <div className="container text-center table-cell align-middle">
                     <Button
                       title={t("BOOK A TABLE")}
                       link="/menu"
@@ -58,21 +58,43 @@ export default function Index() {
                 />
               </div>
               {/* Image slide */}
-              <Image
-                src="/trees2.png"
-                layout="fill"
-                objectFit="cover"
-                className="object-center"
-                priority={true}
-              />
+              <div className="h-full">
+                <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
+                  <div className="container text-center table-cell align-middle">
+                    <Button
+                      title={t("SEASONAL MENU")}
+                      link="/seasonal"
+                      className="order-1"
+                    />
+                  </div>
+                </div>
+                <Image
+                  src="/trees2.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="object-center"
+                  priority={true}
+                />
+              </div>
               {/* Image slide */}
-              <Image
-                src="/leaves.png"
-                layout="fill"
-                objectFit="cover"
-                className="object-center"
-                priority={true}
-              />
+              <div className="h-full">
+                <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
+                  <div className="container text-center table-cell align-middle">
+                    <Button
+                      title={t("DAILY MENU")}
+                      link="/daily"
+                      className="order-1"
+                    />
+                  </div>
+                </div>
+                <Image
+                  src="/leaves.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="object-center"
+                  priority={true}
+                />
+              </div>
             </Carousel>
           </div>
         </div>

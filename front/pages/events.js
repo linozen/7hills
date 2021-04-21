@@ -41,7 +41,7 @@ export default function Events(props) {
 
           <div className="bg-rose-500 lg:pt-2 mx-4 ">
             <Gallery
-              direction="column"
+              direction="row"
               margin={5}
               photos={props.photos}
               onClick={(event) => openLightboxOnSource(event.target.src)} />
