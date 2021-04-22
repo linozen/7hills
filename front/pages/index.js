@@ -27,7 +27,6 @@ export default function Index() {
               autoplayInterval={6000}
               speed={1200}
               pauseOnHover={true}
-              easing="easeCubicInOut"
               renderBottomCenterControls={({ }) => null}
               defaultControlsConfig={{
                 nextButtonText: ">",
@@ -35,8 +34,9 @@ export default function Index() {
                 nextButtonClassName: "slider-control",
                 prevButtonClassName: "slider-control",
               }}
-            // wrapAround={true}
-            // transitionMode="fade"
+              // wrapAround={true}
+              // easing="easeCubicInOut"
+              transitionMode="fade"
             >
               {/* Image slide with button on medium and small viewports */}
               <div className="h-full">
