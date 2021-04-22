@@ -1,8 +1,8 @@
-import Container from './container'
-import Button from './button'
-import { useTranslation, withTranslation, Trans } from 'next-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Container from './container'
+import Button from './button'
+import { useTranslation, Trans } from 'next-i18next';
 
 export default function Footer() {
   const curRoute = useRouter().pathname;
@@ -21,7 +21,7 @@ export default function Footer() {
             <Button title={t('BOOK A TABLE')} link="https://opentable.de" />
           </div>
           <Link href="/privacy">
-            <a className={`text hover:underline ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
+            <a className={`text-center hover:underline ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
               {t('PRIVACY & IMPRINT')}
             </a>
           </Link>
