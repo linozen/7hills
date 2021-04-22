@@ -2,11 +2,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation, withTranslation, Trans } from "next-i18next";
-import Carousel from "nuka-carousel";
+import { useTranslation } from "next-i18next";
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import Button from "../components/button";
+import Carousel from "nuka-carousel";
 
 export default function Index() {
   const { t } = useTranslation("common");
@@ -21,13 +21,14 @@ export default function Index() {
             <NavBar />
           </div>
           {/* Autoplay slider */}
-          <div className="w-full h-full flex-1 overflow-hidden">
+          <div className="w-full h-full flex-1 overflow-hidden bg-olive-500">
             <Carousel
               autoplay={true}
               autoplayInterval={6000}
               speed={1200}
               pauseOnHover={true}
-              renderBottomCenterControls={({ currentSlide }) => null}
+              easing="easeCubicInOut"
+              renderBottomCenterControls={({ }) => null}
               defaultControlsConfig={{
                 nextButtonText: ">",
                 prevButtonText: "<",
@@ -38,12 +39,12 @@ export default function Index() {
             // transitionMode="fade"
             >
               {/* Image slide with button on medium and small viewports */}
-              <div className="h-full ">
+              <div className="h-full">
                 <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
                   <div className="container text-center table-cell align-middle">
                     <Button
                       title={t("BOOK A TABLE")}
-                      link="/menu"
+                      link="https://www.opentable.com/"
                       className="order-1"
                     />
                   </div>
