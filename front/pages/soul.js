@@ -35,6 +35,8 @@ export default function Soul(props) {
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
+                priority={true}
+                loading="eager"
               />
               <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
                 <div className="border border-gold-500 bg-olive-500 bg-opacity-80 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
