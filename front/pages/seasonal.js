@@ -5,7 +5,6 @@ import { getSeasonal } from '../lib/api';
 import NavBar from '../components/navbar';
 import Layout from '../components/layout';
 import Menu from '../components/menu';
-import markdownToHtml from '../lib/markdownToHtml';
 import BackToTop from '../components/back-to-top'
 
 export default function Seasonal(props) {
@@ -14,7 +13,7 @@ export default function Seasonal(props) {
       <Layout>
         <Head>
           <title>
-            Seven Hills Restaurant - Seasonal Menu
+            {props.title} | Seven Hills Restaurant
           </title>
         </Head>
         <NavBar />
@@ -28,7 +27,7 @@ export default function Seasonal(props) {
 export async function getServerSideProps({ locale }) {
   const data = await getSeasonal();
   const title = locale === 'en' ? data.seasonal.title_en : data.seasonal.title_de;
-  const content = await markdownToHtml(locale === 'en' ? data.seasonal.content_en : data.seasonal.content_de);
+  const content = locale === 'en' ? data.seasonal.content_en : data.seasonal.content_de;
   return {
     props: {
       title,

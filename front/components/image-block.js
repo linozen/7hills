@@ -2,18 +2,15 @@ import { useRouter } from 'next/router';
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
-export default function ImageBlock({ props, api_url }) {
+export default function ImageBlock({ props, apiUrl }) {
     const curLocale = useRouter().locale;
     const title = curLocale === "en" ? props.title_en : props.title_de;
     const location = curLocale === "en" ? props.location_en : props.location_de;
     const people = curLocale === "en" ? props.people_en : props.people_de;
     const experience = curLocale === "en" ? props.experience_en : props.experience_de;
-    const distance = props.distance;
     const products = curLocale === "en" ? props.products_en : props.products_de;
+    const distance = props.distance;
     const imageSide = props.imageSide
-
-    console.log(api_url + props.coverImage.url)
-
     return (
         <>
             <section className="text-gold-500 bg-olive-500">
@@ -35,14 +32,15 @@ export default function ImageBlock({ props, api_url }) {
                     </div>
                     <div className="lg:max-w-lg lg:w-full md:w-1/2">
                         <div
-                            className="relative shadow-2xl w-full h-96 md:h-80 lg:h-96 border border-gold-500"
+                            className="lg:mb-20 relative shadow-2xl w-full h-96 md:h-80 lg:h-96 border border-gold-500"
                             data-aos={`${imageSide ? 'fade-right' : 'fade-left'}`}
                         >
                             <Image
-                                src={api_url + props.coverImage.url}
+                                src={apiUrl + props.coverImage.url}
                                 layout="fill"
                                 objectFit="cover"
                                 objectPosition="center"
+                                priority={true}
                             />
                         </div>
                     </div>

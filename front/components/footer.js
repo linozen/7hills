@@ -18,10 +18,13 @@ export default function Footer() {
             </Trans>
           </h3>
           <div className="flex flex-col lg:flex-row justify-center items-center lg:p-3 lg:w-1/2">
-            <Button title={t('BOOK A TABLE')} link="https://opentable.de" />
+            <Button
+              title={t('BOOK A TABLE')}
+              link="https://opentable.de" />
           </div>
           <Link href="/privacy">
-            <a className={`text-center hover:underline ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
+            <a
+              className={`text-center md:text-left hover:underline ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
               {t('PRIVACY & IMPRINT')}
             </a>
           </Link>

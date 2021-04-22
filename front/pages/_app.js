@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
         color={`${onEvents ? '#6d2d21' : '#dec580'}`}
         startPosition={0.3}
         stopDelayMs={200}
-        height="2"
+        height="1"
       />
       <Component {...pageProps} />
     </>

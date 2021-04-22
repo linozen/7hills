@@ -22,10 +22,12 @@ module.exports = {
             h2: {
               fontFamily: 'Anisette Medium',
               color: '#d3ae65',
+              fontSize: '2.2em !important',
             },
             h3: {
               fontFamily: 'Anisette Medium',
               color: '#d3ae65',
+              fontSize: '1.25em !important',
             },
             p: {
               fontFamily: 'Merriweather'
@@ -75,8 +77,6 @@ module.exports = {
   },
   plugins: [
     // eslint-disable-next-line global-require
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('tailwind-gradient-mask-image')
   ],
 };

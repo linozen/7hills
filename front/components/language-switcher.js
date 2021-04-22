@@ -6,7 +6,6 @@ export default function LanguageSwitcher() {
   const curRoute = useRouter().pathname;
   const onEvents = (curRoute == "/events") ? true : false
   const { slug } = useRouter().query
-  console.log(slug)
   return (
     <>
       <div className="px-6 py-4 lg:py-0">

@@ -1,16 +1,11 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import Container from '@/components/container';
-import PostBody from '@/components/post-body';
 import MoreStories from '@/components/more-stories';
 import NavBar from '@/components/navbar';
-import PostHeader from '@/components/post-header';
-import SectionSeparator from '@/components/section-separator';
 import { useTranslation, withTranslation, Trans } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Layout from '@/components/layout';
 import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api';
-import PostTitle from '@/components/post-title';
 import Head from 'next/head';
 import Image from 'next/image'
 import ButtonScroll from '@/components/button-scroll'
@@ -23,7 +18,6 @@ export default function Post({ post, morePosts }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  // console.log(morePosts)
   return (
     <Layout >
       {router.isFallback ? (
@@ -62,9 +56,11 @@ export default function Post({ post, morePosts }) {
                   />
 
                   <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
-                      {post.title}
-                    </span>
+                    <div className="border border-gold-500 bg-olive-500 bg-opacity-80 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                        {post.title}
+                      </span>
+                    </div>
                   </div>
 
                   <div className="w-full flex justify-center pb-12 lg:pb-24 relative z-10 bottom-inner-shadow">
@@ -78,7 +74,7 @@ export default function Post({ post, morePosts }) {
               </div>
             </div>
             <div className="w-full bg-olive-500 pt-12">
-              <div id="post-content" className="prose prose-lg text-gold-500 px-5 mx-auto">
+              <div id="post-content" className="prose prose-xl text-gold-500 px-5 mx-auto">
                 <ReactMarkdown>
                   {post.content}
                 </ReactMarkdown>
@@ -133,7 +129,6 @@ export async function getStaticProps({ locale, params }) {
       }
     })
 
-  console.log(morePostData)
   return {
     props: {
       apiUrl,

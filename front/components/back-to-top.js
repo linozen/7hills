@@ -9,7 +9,7 @@ export default function BackToTop() {
         <>
             <ScrollToTop
                 showUnder={200}
-                duration={400}
+                duration={1000}
                 style={
                     {
                         position: 'fixed',
@@ -18,7 +18,7 @@ export default function BackToTop() {
                         right: 30,
                         cursor: 'pointer',
                         transitionDuration: '0.2s',
-                        transitionTimingFunction: 'linear',
+                        transitionTimingFunction: 'easeInOutCubic',
                         transitionDelay: '0s'
                     }
                 }
