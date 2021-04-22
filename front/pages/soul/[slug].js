@@ -62,7 +62,7 @@ export default function Post({ post, morePosts }) {
                   />
 
                   <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
-                    <span className="glow bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
                       {post.title}
                     </span>
                   </div>

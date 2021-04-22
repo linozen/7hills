@@ -20,33 +20,27 @@ export default function Soul(props) {
         <Head>
           <title>Seven Hills Restaurant</title>
         </Head>
-
+        {/* Content starts here */}
         <div className="flex flex-col h-screen">
-
+          {/* NavBar and BackToTop */}
           <div className="w-full flex-none">
             <NavBar />
           </div>
           <BackToTop />
-
-
+          {/* Image with Button */}
           <div className="relative bg-olive-500 flex-auto w-full h-full">
-
             <div className="-z-10 flex justify-between items-center flex-col h-full ">
-
               <Image
-                className="bottom-inner-shadow"
                 src="/leaves.png"
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
               />
-
               <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
-                <span className="glow bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
                   {props.title}
                 </span>
               </div>
-
               <div className="w-full flex justify-center pb-12 lg:pb-24 relative z-10 bottom-inner-shadow">
                 <ButtonScroll
                   title={t("READ MORE")}
@@ -54,12 +48,11 @@ export default function Soul(props) {
                 />
               </div>
             </div>
-
           </div>
-
         </div>
+        {/* Soul Content */}
         <div className="w-full bg-olive-500 pt-12">
-          <div id="soul-content" className="prose prose-lg text-gold-500 px-5 mx-auto">
+          <div id="soul-content" className="prose prose-xl text-gold-500 px-5 mx-auto">
             <ReactMarkdown>
               {props.content}
             </ReactMarkdown>
