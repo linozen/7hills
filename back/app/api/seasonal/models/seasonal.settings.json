@@ -2,7 +2,7 @@
   "kind": "singleType",
   "collectionName": "seasonals",
   "info": {
-    "name": "Menu: Seasonal",
+    "name": "/seasonal",
     "description": ""
   },
   "options": {
@@ -11,17 +11,17 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title_en": {
-      "type": "string"
-    },
-    "title_de": {
-      "type": "string"
-    },
     "content_en": {
       "type": "richtext"
     },
     "content_de": {
       "type": "richtext"
+    },
+    "title_en": {
+      "type": "string"
+    },
+    "title_de": {
+      "type": "string"
     }
   }
 }

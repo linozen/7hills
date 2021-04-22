@@ -2,7 +2,7 @@
   "kind": "singleType",
   "collectionName": "daily",
   "info": {
-    "name": "Menu: Daily",
+    "name": "/daily",
     "description": ""
   },
   "options": {
@@ -11,17 +11,17 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title_de": {
-      "type": "string"
-    },
     "content_de": {
+      "type": "richtext"
+    },
+    "content_en": {
       "type": "richtext"
     },
     "title_en": {
       "type": "string"
     },
-    "content_en": {
-      "type": "richtext"
+    "title_de": {
+      "type": "string"
     }
   }
 }

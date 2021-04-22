@@ -2,7 +2,7 @@
   "kind": "singleType",
   "collectionName": "events",
   "info": {
-    "name": "Events Page",
+    "name": "/events",
     "description": ""
   },
   "options": {
