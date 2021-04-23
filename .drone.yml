@@ -25,6 +25,11 @@ steps:
   - docker-compose -f docker-compose.front.yml build --pull
   - docker-compose -f docker-compose.front.yml up -d
 
+trigger:
+  branch:
+  - master
+  event:
+  - push
 
 volumes:
 - name: dockersock
