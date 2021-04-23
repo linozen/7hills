@@ -37,41 +37,44 @@ export default function Events(props) {
         <NavBar />
         <BackToTop />
 
-        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 bg-rose-500 py-10">
 
-          <div className="bg-rose-500 lg:pt-2 mx-4 ">
-            <Gallery
-              direction="row"
-              margin={5}
-              photos={props.photos}
-              onClick={(event) => openLightboxOnSource(event.target.src)} />
-          </div>
+        <div className="bg-rose-500">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 bg-rose-500 py-10 mx-7 lg:mx-12">
 
-          <FsLightbox
-            toggler={lightboxController.toggler}
-            source={lightboxController.source}
-            sources={props.sources}
-          />
-
-          <div className="text-blood-500 px-5 lg:px-10 mx-auto">
-            <div className="text-center lg:text-left text-blood-500 text-5xl md:text-7xl pb-6">
-              {props.title}
+            <div className="bg-rose-500 lg:pt-2 -mx-1">
+              <Gallery
+                direction="row"
+                margin={5}
+                photos={props.photos}
+                onClick={(event) => openLightboxOnSource(event.target.src)} />
             </div>
-            <div
-              className="pb-3 markdown-events"
-              dangerouslySetInnerHTML={{ __html: props.content }}
+
+            <FsLightbox
+              toggler={lightboxController.toggler}
+              source={lightboxController.source}
+              sources={props.sources}
             />
-            <div className="pb-12">
-              <Button
-                title={t("DOWNLOAD PDF")}
-                link="/menu"
-              />
-            </div>
-            <div className="lg:hidden text-3xl md:text-5xl pb-3">
-              {t("What's expecting you")}
-            </div>
-          </div>
 
+            <div className="text-blood-500 lg:px-10 mx-auto">
+              <div className="uppercase text-left text-blood-500 text-5xl md:text-7xl pb-2">
+                {props.title}
+              </div>
+              <div
+                className="pb-3 markdown-events"
+                dangerouslySetInnerHTML={{ __html: props.content }}
+              />
+              <div className="pb-12">
+                <Button
+                  title={t("DOWNLOAD PDF")}
+                  link="/menu"
+                />
+              </div>
+              <div className="lg:hidden text-3xl md:text-5xl pb-3">
+                {t("What's expecting you")}
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </Layout>

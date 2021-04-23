@@ -82,7 +82,7 @@
 }
 
 .markdown-events > h1 {
-  @apply text-3xl md:text-5xl mt-6 pb-4;
+  @apply pt-2 text-3xl md:text-4xl mt-6 pb-4;
 }
 
 .markdown-events > p {
@@ -111,7 +111,7 @@
 }
 
 .markdown-local > h1 {
-  @apply font-sans text-xl pt-2;
+  @apply lowercase font-sans text-xl pt-2;
 }
 
 .markdown-local > p {

@@ -19,12 +19,12 @@ export default function ImageBlock({ props, apiUrl }) {
                         className={`${imageSide ? 'md:pl-5 lg:pl-12' : 'md:pr-5 lg:pr-12'} lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left mb-4 md:mb-0 text-left`}
                         data-aos={`${imageSide ? 'fade-left' : 'fade-right'}`}
                     >
-                        <div className="text-4xl text-gold-500">
+                        <div className="lowercase text-4xl text-gold-500">
                             {title}
                         </div>
-                        <div className="font-light text-xl">{location}</div>
+                        <div className="lowercase font-light text-xl">{location}</div>
                         <div className="text-left text-3xl font-light mb-3">{distance} km</div>
-                        <div className="text-xl">{people}</div>
+                        <div className="lowercase text-xl">{people}</div>
                         <div className="font-serif mb-3">{experience}</div>
                         <ReactMarkdown className="markdown-local">
                             {products}
