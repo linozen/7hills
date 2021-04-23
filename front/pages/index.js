@@ -55,7 +55,6 @@ export default function Index() {
                   objectFit="cover"
                   className="object-center"
                   priority={true}
-                  loading="eager"
                 />
               </div>
               {/* Image slide */}
