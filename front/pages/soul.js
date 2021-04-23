@@ -13,7 +13,7 @@ import MoreStories from "@/components/more-stories.js";
 
 export default function Soul(props) {
   const { t } = useTranslation("common");
-  console.log(props.posts)
+  // console.log(props.posts)
   return (
     <>
       <Layout>
@@ -39,7 +39,7 @@ export default function Soul(props) {
               />
               <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
                 <div className="border border-gold-500 bg-olive-500 bg-opacity-80 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                  <span className="uppercase bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
                     {props.title}
                   </span>
                 </div>

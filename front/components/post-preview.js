@@ -24,12 +24,12 @@ export default function PostPreview({
           </button>
         </Link>
       </div>
-      <h3 className="text-gold-500 text-3xl mb-3 leading-snug">
+      <h3 className="uppercase text-gold-500 text-3xl mb-3 leading-snug">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
-      <div className="text-xl mb-4 text-gold-500 font-light">
+      <div className="lowercase text-xl mb-4 text-gold-500 font-light">
         <Date dateString={date} />
       </div>
       <p className="font-serif text-gold-500 text-lg leading-relaxed mb-8">{excerpt}</p>

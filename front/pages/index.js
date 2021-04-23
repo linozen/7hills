@@ -21,7 +21,7 @@ export default function Index() {
             <NavBar />
           </div>
           {/* Autoplay slider */}
-          <div className="w-full h-full flex-1 overflow-hidden bg-olive-500">
+          <div className="border-t border-gold-500 w-full h-full flex-1 overflow-hidden bg-olive-500">
             <Carousel
               autoplay={true}
               autoplayInterval={6000}
