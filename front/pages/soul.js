@@ -35,7 +35,7 @@ export default function Soul(props) {
                   {props.title}
                 </span>
               </div>
-              <div data-aos="fade-up" className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <ButtonScroll link="soul-content" />
               </div>
               <img className="object-cover h-full w-full" alt="trees" src="/forest.jpg" />
