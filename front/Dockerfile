@@ -13,6 +13,7 @@ WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ENV STRAPI_API_URL=https://api.sevenhills-restaurant.de
+ENV NODE_ENV production
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next

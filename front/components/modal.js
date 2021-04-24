@@ -16,7 +16,7 @@ export default function Modal({ onClose, navItems }) {
         className={`w-full h-full fixed inset-0 z-50 ${onEvents ? 'bg-rose-500' : 'bg-olive-500'}`}
         onClick={onClose}
       >
-        <div className={`flex flex-row content-start items-center justify-center static w-full h-full p-10 text-center text-4xl ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
+        <div className={`flex flex-row content-start items-center justify-center static w-full h-full p-10 text-center text-2xl md:text-4xl ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
           <ul className="">
             {navItems.map((item) => (
               <li

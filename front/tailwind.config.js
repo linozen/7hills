@@ -19,17 +19,20 @@ module.exports = {
               fontFamily: 'Anisette Medium',
               color: '#d3ae65',
               textTransform: 'uppercase',
+              fontWeight: 'normal',
             },
             h2: {
               fontFamily: 'Anisette Medium',
               color: '#d3ae65',
-              fontSize: '2.2em !important',
+              // fontWeight: 'normal',
+              fontSize: '2.1em !important',
               textTransform: 'lowercase',
             },
             h3: {
               fontFamily: 'Anisette Medium',
               color: '#d3ae65',
-              fontSize: '1.25em !important',
+              fontWeight: 'normal',
+              fontSize: '1.35em !important',
               textTransform: 'lowercase',
             },
             p: {

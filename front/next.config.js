@@ -7,7 +7,7 @@ module.exports = withPWA({
     return [
       {
         // This works, and returns appropriate Response headers:
-        source: '/(.*).png',
+        source: '/(.*).(jpg|png)',
         headers: [
           {
             key: 'Cache-Control',

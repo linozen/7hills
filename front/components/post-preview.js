@@ -11,16 +11,18 @@ export default function PostPreview({
 }) {
   return (
     <div className="p-5">
-      <div className="overflow-hidden border border-gold-500 relative h-96 w-full mb-5">
+      <div className="overflow-hidden border border-gold-500 relative h-72 md:h-80 lg:h-96 w-full mb-5">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <button>
-            <Image
-              src={coverImageUrl}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              priority={true}
-            />
+
+            <img className="h-72 md:h-80 lg:h-96 w-full object-cover object-center" alt="producer-image" src={coverImageUrl} />
+            {/* <Image */}
+            {/*   src={coverImageUrl} */}
+            {/*   layout="fill" */}
+            {/*   objectFit="cover" */}
+            {/*   objectPosition="center" */}
+            {/*   priority={true} */}
+            {/* /> */}
           </button>
         </Link>
       </div>

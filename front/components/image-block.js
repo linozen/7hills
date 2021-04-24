@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
 export default function ImageBlock({ props, apiUrl }) {
@@ -32,16 +31,9 @@ export default function ImageBlock({ props, apiUrl }) {
                     </div>
                     <div className="lg:max-w-lg lg:w-full md:w-1/2">
                         <div
-                            className="lg:mb-20 relative shadow-2xl w-full h-96 md:h-80 lg:h-96 border border-gold-500"
-                            data-aos={`${imageSide ? 'fade-right' : 'fade-left'}`}
-                        >
-                            <Image
-                                src={apiUrl + props.coverImage.url}
-                                layout="fill"
-                                objectFit="cover"
-                                objectPosition="center"
-                                priority={true}
-                            />
+                            className="lg:mb-20 shadow-2xl w-full h-72 md:h-80 lg:h-96 border border-gold-500 overflow-hidden"
+                            data-aos={`${imageSide ? 'fade-right' : 'fade-left'}`} >
+                            <img className="h-72 md:h-80 lg:h-96 w-full object-cover object-center" alt="producer-image" src={apiUrl + props.coverImage.url} />
                         </div>
                     </div>
                 </div>

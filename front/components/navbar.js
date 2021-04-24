@@ -91,7 +91,7 @@ export default function NavBar({ fixed }) {
                   </Transition>
                 </div>
               </div>
-              <div>
+              <div className="lg:mx-48 md:mx-20 mx-2">
                 <a
                   className="flex justify-center text-xl text-white font-bold leading-relaxed py-2 whitespace-no-wrap uppercase"
                   href="/"
