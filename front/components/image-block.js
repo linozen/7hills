@@ -33,7 +33,7 @@ export default function ImageBlock({ props, apiUrl }) {
                         <div
                             className="lg:mb-20 shadow-2xl w-full h-72 md:h-80 lg:h-96 border border-gold-500 overflow-hidden"
                             data-aos={`${imageSide ? 'fade-right' : 'fade-left'}`} >
-                            <img className="h-72 md:h-80 lg:h-96 w-full object-cover object-center" alt="producer-image" src={apiUrl + props.coverImage.url} />
+                            <img className="h-72 md:h-80 lg:h-96 w-full object-cover object-center" alt="producer-image" src={apiUrl + props.coverImage.url} loading="lazy" />
                         </div>
                     </div>
                 </div>

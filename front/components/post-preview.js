@@ -14,7 +14,7 @@ export default function PostPreview({
       <div className="overflow-hidden border border-gold-500 relative h-72 md:h-80 lg:h-96 w-full mb-5">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <a className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center">
-            <img className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center" alt="producer-image" src={coverImageUrl} />
+            <img className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center" alt="producer-image" src={coverImageUrl} loading="lazy" />
           </a>
         </Link>
       </div>

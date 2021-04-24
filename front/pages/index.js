@@ -52,7 +52,7 @@ export default function Index() {
                     <Button title={t("ORGANIZE EVENT")} link="https:www.opentable.com/" />
                   </div>
                 </div>
-                <img className="object-cover h-full w-full" alt="trees" src="/trees.jpg" />
+                <img className="object-cover h-full w-full" alt="trees" src="/trees.jpg" loading="lazy" />
               </div>
               {/* Image slide with button on medium and small viewports */}
               <div className="relative w-full h-full overflow-hidden">
@@ -61,7 +61,7 @@ export default function Index() {
                     <Button title={t("SEASONAL MENU")} link="https:www.opentable.com/" />
                   </div>
                 </div>
-                <img className="object-cover h-full w-full" alt="trees" src="/leaves.jpg" />
+                <img className="object-cover h-full w-full" alt="trees" src="/leaves.jpg" loading="lazy" />
               </div>
             </Carousel>
           </div>
