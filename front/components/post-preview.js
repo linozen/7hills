@@ -13,17 +13,9 @@ export default function PostPreview({
     <div className="p-5">
       <div className="overflow-hidden border border-gold-500 relative h-72 md:h-80 lg:h-96 w-full mb-5">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
-          <button>
-
-            <img className="h-72 md:h-80 lg:h-96 w-full object-cover object-center" alt="producer-image" src={coverImageUrl} />
-            {/* <Image */}
-            {/*   src={coverImageUrl} */}
-            {/*   layout="fill" */}
-            {/*   objectFit="cover" */}
-            {/*   objectPosition="center" */}
-            {/*   priority={true} */}
-            {/* /> */}
-          </button>
+          <a className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center">
+            <img className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center" alt="producer-image" src={coverImageUrl} />
+          </a>
         </Link>
       </div>
       <h3 className="uppercase text-gold-500 text-3xl mb-3 leading-snug">
