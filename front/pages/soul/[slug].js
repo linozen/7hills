@@ -38,43 +38,29 @@ export default function Post({ post, morePosts }) {
 
             <div className="flex flex-col h-screen">
 
-              <div className="w-full flex-none">
+              <div className="w-full flex-initial">
                 <NavBar />
               </div>
               <BackToTop />
 
-              <div className="relative bg-olive-500 flex-auto w-full h-full">
 
-                <div className="-z-10 flex justify-between items-center flex-col h-full ">
-
-                  <Image
-                    className="bottom-inner-shadow"
-                    src={post.coverImageUrl}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                  />
-
-                  <div className="z-10 relative text-center pt-24 text-7xl lg:text-9xl lg:pt-4 lg:pt-36">
-                    <div className="border border-gold-500 bg-olive-500 bg-opacity-80 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
-                        {post.title}
-                      </span>
-                    </div>
+              <div className="border-t border-b border-gold-500 relative bg-olive-500 flex-1 overflow-hidden">
+                <div className="relative w-full h-full overflow-hidden">
+                  <div className="absolute text-center top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute min-w-full md:min-w-min border-b border-t md:border border-gold-500 bg-olive-500 bg-opacity-70 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
+                    <span className="text-center uppercase text-3xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
+                      {post.title}
+                    </span>
                   </div>
-
-                  <div className="w-full flex justify-center pb-12 lg:pb-24 relative z-10 bottom-inner-shadow">
-                    <ButtonScroll
-                      title={t("READ MORE")}
-                      link="post-content"
-                    />
+                  <div data-aos="fade-up" className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <ButtonScroll link="post-content" />
                   </div>
+                  <img className="object-cover h-full w-full" alt="trees" src={post.coverImageUrl} />
                 </div>
-
               </div>
             </div>
+
             <div className="w-full bg-olive-500 pt-12">
-              <div id="post-content" className="prose prose-xl text-gold-500 px-5 mx-auto">
+              <div id="post-content" className="prose md:prose-xl text-gold-500 px-5 mx-auto">
                 <ReactMarkdown>
                   {post.content}
                 </ReactMarkdown>

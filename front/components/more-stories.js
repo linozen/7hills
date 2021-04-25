@@ -6,7 +6,7 @@ export default function MoreStories({ posts }) {
   return (
     <section>
       <div className="bg-olive-500">
-        <h2 className="mx-5 pt-20 text-gold-500 text-3xl md:text-6xl lg:text-7xl">
+        <h2 className="mx-5 pt-20 text-gold-500 text-3xl md:text-6xl">
           {t("MORE STORIES")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:col-gap-x-16 lg:col-gap-32 row-gap-20 md:row-gap-32">

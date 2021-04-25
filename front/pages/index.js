@@ -21,7 +21,7 @@ export default function Index() {
             <NavBar />
           </div>
           {/* Autoplay slider */}
-          <div className="w-full h-full flex-1 overflow-hidden bg-olive-500">
+          <div className="border-t border-b border-gold-500 w-full h-full flex-1 overflow-hidden bg-olive-500">
             <Carousel
               autoplay={true}
               autoplayInterval={6000}
@@ -39,62 +39,29 @@ export default function Index() {
               transitionMode="fade"
             >
               {/* Image slide with button on medium and small viewports */}
-              <div className="h-full">
-                <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
-                  <div className="container text-center table-cell align-middle">
-                    <Button
-                      title={t("BOOK A TABLE")}
-                      link="https://www.opentable.com/"
-                      className="order-1"
-                    />
-                  </div>
+              <div className="relative w-full h-full overflow-hidden">
+                <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <Button title={t("BOOK A TABLE")} link="https:www.opentable.com/" />
                 </div>
-                <Image
-                  src="/trees.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="object-center"
-                  priority={true}
-                  loading="eager"
-                />
+                <img className="object-cover h-full w-full" alt="trees" src="/forest.jpg" />
               </div>
-              {/* Image slide */}
-              <div className="h-full">
-                <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
-                  <div className="container text-center table-cell align-middle">
-                    <Button
-                      title={t("SEASONAL MENU")}
-                      link="/seasonal"
-                      className="order-1"
-                    />
+              {/* Image slide with button on medium and small viewports */}
+              <div className="relative w-full h-full overflow-hidden">
+                <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div data-aos="fade-up">
+                    <Button title={t("ORGANIZE EVENT")} link="https:www.opentable.com/" />
                   </div>
                 </div>
-                <Image
-                  src="/trees2.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="object-center"
-                  priority={true}
-                />
+                <img className="object-cover h-full w-full" alt="trees" src="/trees.jpg" loading="lazy" />
               </div>
-              {/* Image slide */}
-              <div className="h-full">
-                <div className="w-full bottom-inner-shadow mx-auto table relative z-10 h-full">
-                  <div className="container text-center table-cell align-middle">
-                    <Button
-                      title={t("DAILY MENU")}
-                      link="/daily"
-                      className="order-1"
-                    />
+              {/* Image slide with button on medium and small viewports */}
+              <div className="relative w-full h-full overflow-hidden">
+                <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div data-aos="fade-up">
+                    <Button title={t("SEASONAL MENU")} link="https:www.opentable.com/" />
                   </div>
                 </div>
-                <Image
-                  src="/leaves.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="object-center"
-                  priority={true}
-                />
+                <img className="object-cover h-full w-full" alt="trees" src="/leaves.jpg" loading="lazy" />
               </div>
             </Carousel>
           </div>

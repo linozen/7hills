@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
           <Link href="/privacy">
             <a
-              className={`text-center md:text-left hover:underline ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
+              className={`text-lg text-center md:text-left hover:underline ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
               {t('PRIVACY & IMPRINT')}
             </a>
           </Link>

@@ -35,7 +35,7 @@
 }
 
 .button {
-  @apply text-lg lg:text-2xl shadow-lg border py-3 px-4 lg:px-8 duration-500 transition-colors mb-6 lg:mb-0;
+  @apply min-w-max text-xl lg:text-2xl shadow-lg border py-3 px-4 lg:px-8 duration-500 transition-colors mb-6 lg:mb-0;
 }
 
 .back-to-top {

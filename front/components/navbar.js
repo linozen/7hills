@@ -91,12 +91,13 @@ export default function NavBar({ fixed }) {
                   </Transition>
                 </div>
               </div>
-              <div>
+              <div className="lg:mx-48 md:mx-20 mx-2">
                 <a
                   className="flex justify-center text-xl text-white font-bold leading-relaxed py-2 whitespace-no-wrap uppercase"
                   href="/"
                 >
-                  <Image src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} width={600} height={155} />
+                  <img alt="logo" src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} />
+                  {/* <Image src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} width={600} height={155} /> */}
                 </a>
               </div>
             </nav>
