@@ -34,6 +34,29 @@
   @apply hidden md:block text-3xl;
 }
 
+#post-content img {
+  @apply border border-gold-500;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.react-player video {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.player-wrapper {
+  @apply border border-gold-500 shadow-xl;
+}
+
 .button {
   @apply min-w-max text-xl lg:text-2xl shadow-lg border py-3 px-4 lg:px-8 duration-500 transition-colors mb-6 lg:mb-0;
 }
@@ -73,7 +96,7 @@
 
 /* utiliy stuff */
 .language-switcher {
-  @apply text-2xl lg:font-light lg:text-lg px-1 border-solid transition-colors duration-300 border;
+  @apply text-lg md:text-2xl lg:font-light lg:text-lg px-1 border-solid transition-colors duration-300 border;
 }
 
 /* /events markdown formatting */
