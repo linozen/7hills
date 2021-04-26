@@ -7,10 +7,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Layout from '@/components/layout';
 import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api';
 import Head from 'next/head';
-import Image from 'next/image'
-import ButtonScroll from '@/components/button-scroll'
+import ButtonScroll from '@/components/button-scroll';
 import BackToTop from "@/components/back-to-top";
 import ReactMarkdown from "react-markdown";
+import ReactPlayer from "react-player";
 
 export default function Post({ post, morePosts }) {
   const { t } = useTranslation("common");
@@ -64,6 +64,24 @@ export default function Post({ post, morePosts }) {
                 <ReactMarkdown>
                   {post.content}
                 </ReactMarkdown>
+
+                {post.videoUrl ? (
+                  <div className="player-wrapper">
+                    <ReactPlayer
+                      light={post.coverImageUrl}
+                      playing={true}
+                      controls={true}
+                      className='react-player'
+                      volume={0}
+                      url={post.videoUrl}
+                      width='100%'
+                      height='100%'
+                    />
+                  </div>
+                ) : (
+                    <div>
+                    </div>
+                  )}
               </div>
               {morePosts.length > 0 && <MoreStories posts={morePosts} />}
             </div>
@@ -84,6 +102,8 @@ export async function getStaticProps({ locale, params }) {
   const content = locale === 'en' ? data?.posts[0]?.content_en || '' : data?.posts[0]?.content_de || '';
   const slug = data?.posts[0]?.slug
   const coverImageUrl = apiUrl + data?.posts[0]?.coverImage?.url
+  const videoUrl = data?.posts[0].video.url === "no_video" ? null : apiUrl + data.posts[0].video.url
+
   const date = data?.posts[0]?.date
 
   // additional post data (translated)
@@ -122,6 +142,7 @@ export async function getStaticProps({ locale, params }) {
         slug,
         title,
         coverImageUrl,
+        videoUrl,
         content,
         date,
       },

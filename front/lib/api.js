@@ -153,6 +153,9 @@ export async function getPostAndMorePosts(slug) {
       coverImage {
         url
       }
+      video {
+        url
+      }
     }
 
     morePosts: posts(sort: "date:desc", limit: 3, where: $where_ne) {
