@@ -47,7 +47,7 @@ export default function NavBar({ fixed }) {
     <>
       <div className={`relative ${onEvents ? 'bg-rose-500' : 'bg-olive-500'}`}>
         <div className="modal-fix">
-          <Container>
+          <div className="mx-auto">
             <nav className={`px-4 py-5 ${onEvents ? 'bg-rose-500' : 'bg-olive-500'}`}>
               <ul className="hidden lg:flex content-center justify-center items-center pb-6">
                 {navItems.map((item) => (
@@ -96,17 +96,19 @@ export default function NavBar({ fixed }) {
                   </Transition>
                 </div>
               </div>
-              <div className="lg:mx-48 md:mx-20 mx-2">
-                <a
-                  className="flex justify-center text-xl text-white font-bold leading-relaxed py-2 whitespace-no-wrap uppercase"
-                  href="/"
-                >
-                  <img alt="logo" src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} />
-                  {/* <Image src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} width={600} height={155} /> */}
-                </a>
+              <div className="container mx-auto">
+                <div className="lg:mx-32 md:mx-20 mx-2">
+                  <a
+                    className="text-xl text-white font-bold leading-relaxed py-2 whitespace-no-wrap uppercase"
+                    href="/"
+                  >
+                    <img alt="logo" src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} />
+                    {/* <Image src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} width={600} height={155} /> */}
+                  </a>
+                </div>
               </div>
             </nav>
-          </Container>
+          </div>
         </div>
       </div>
     </>
