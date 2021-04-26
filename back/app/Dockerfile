@@ -13,11 +13,13 @@ RUN yarn install
 FROM dependencies AS build
 COPY . .
 ENV NODE_ENV production
+ENV WEBSITE https://api.sevenhills-restaurant.de
 ENV DATABASE_FILENAME /home/node/app/data/data.db
 RUN yarn build --clean
 
 # production
 FROM build as release
+ENV WEBSITE https://api.sevenhills-restaurant.de
 COPY --chown=1000:1000 --from=build /srv/app /home/node/app
 USER node
 WORKDIR /home/node/app
