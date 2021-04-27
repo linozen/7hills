@@ -13,7 +13,6 @@ import MoreStories from "@/components/more-stories.js";
 
 export default function Soul(props) {
   const { t } = useTranslation("common");
-  // console.log(props.posts)
   return (
     <>
       <Layout>
@@ -30,20 +29,20 @@ export default function Soul(props) {
           {/* Image with Button */}
           <div className="border-t border-b border-gold-500 relative bg-olive-500 flex-1 overflow-hidden">
             <div className="relative w-full h-full overflow-hidden">
-              <div className="absolute text-center top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute min-w-full md:min-w-min border-b border-t md:border border-gold-500 bg-olive-500 bg-opacity-70 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
-                <span className="text-center uppercase text-6xl bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
-                  {props.title}
-                </span>
+              <div className="uppercase absolute h-full w-full flex flex-col items-center justify-around pt-32">
+                <div className="bg-olive-500 py-2 md:px-4 w-full text-center border-b border-t md:border md:max-w-max border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
+                  <span className="text-6xl shimmer">
+                    {props.title}
+                  </span>
+                </div>
+                <ButtonScroll link="content" />
               </div>
-              <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <ButtonScroll link="soul-content" />
-              </div>
-              <img className="object-cover h-full w-full" alt="trees" src="/forest.jpg" />
+              <img className="object-cover h-full w-full" alt="trees" src="/trees.jpg" />
             </div>
           </div>
         </div>
         {/* Soul Content */}
-        <div id="soul-content" className="w-full bg-olive-500 pt-12">
+        <div id="content" className="w-full bg-olive-500 pt-12">
           <div className="prose prose-xl text-gold-500 px-5 mx-auto">
             <ReactMarkdown>
               {props.content}

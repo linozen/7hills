@@ -34,34 +34,25 @@ export default function Index() {
                 nextButtonClassName: "slider-control",
                 prevButtonClassName: "slider-control",
               }}
-              // wrapAround={true}
               // easing="easeCubicInOut"
               transitionMode="fade"
+              wrapAround={true}
             >
+
               {/* Image slide with button on medium and small viewports */}
               <div className="relative w-full h-full overflow-hidden">
-                <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <Button title={t("BOOK A TABLE")} link="https:www.opentable.com/" />
+                <div className="absolute h-full w-full flex justify-center items-center pt-48">
+                  <Button title={t("BOOK TABLE")} link="https:www.opentable.com/" />
                 </div>
-                <img className="object-cover h-full w-full" alt="trees" src="/forest.jpg" />
+                <img className="object-cover h-full w-full" alt="forest" src="/forest.jpg" />
               </div>
+
               {/* Image slide with button on medium and small viewports */}
               <div className="relative w-full h-full overflow-hidden">
-                <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div data-aos="fade-up">
-                    <Button title={t("ORGANIZE EVENT")} link="https:www.opentable.com/" />
-                  </div>
+                <div className="absolute h-full w-full flex justify-center items-center pt-48">
+                  <Button title={t("BOOK EVENT")} link="/events" />
                 </div>
-                <img className="object-cover h-full w-full" alt="trees" src="/trees.jpg" loading="lazy" />
-              </div>
-              {/* Image slide with button on medium and small viewports */}
-              <div className="relative w-full h-full overflow-hidden">
-                <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div data-aos="fade-up">
-                    <Button title={t("SEASONAL MENU")} link="https:www.opentable.com/" />
-                  </div>
-                </div>
-                <img className="object-cover h-full w-full" alt="trees" src="/leaves.jpg" loading="lazy" />
+                <img className="object-cover h-full w-full" alt="events" src="/events.jpg" loading="lazy" />
               </div>
             </Carousel>
           </div>

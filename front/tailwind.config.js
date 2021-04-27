@@ -20,12 +20,13 @@ module.exports = {
               color: '#d3ae65',
               textTransform: 'uppercase',
               fontWeight: 'normal',
+              fontSize: '1.875em !important'
             },
             h2: {
               fontFamily: 'Anisette Medium',
               color: '#d3ae65',
               // fontWeight: 'normal',
-              fontSize: '2.1em !important',
+              fontSize: '1.5em !important',
               textTransform: 'lowercase',
             },
             h3: {
@@ -45,6 +46,12 @@ module.exports = {
               color: '#d3ae65',
               textDecoration: 'underline',
             },
+            ul: {
+              li: {
+                fontFamily: 'Merriweather',
+                '&:before': { backgroundColor: '#dec580' }
+              }
+            },
             hr: {
               borderColor: '#ac5e14',
             },
@@ -62,7 +69,8 @@ module.exports = {
           500: '#6d2d21'
         },
         blue: {
-          500: '#00486b'
+          light: '#36697e',
+          dark: '#00262a'
         },
         olive: {
           500: '#293c2b',

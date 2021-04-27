@@ -24,6 +24,10 @@
   src: local("Anisette"), url(/fonts/Anisette-Bold.woff2) format("woff2");
 }
 
+.shimmer {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300;
+}
+
 /* nuka-carousel ui fixes */
 .slider-slide,
 .slider-list {
@@ -34,7 +38,7 @@
   @apply hidden md:block text-3xl;
 }
 
-#post-content img {
+#content img {
   @apply border border-gold-500;
 }
 
@@ -54,7 +58,7 @@
   margin-bottom: 0 !important;
 }
 .player-wrapper {
-  @apply border border-gold-500 shadow-xl;
+  @apply border-b border-t border-gold-500 shadow-xl;
 }
 
 .button {
@@ -63,6 +67,21 @@
 
 .back-to-top {
   @apply relative mx-2 border py-1 px-1 duration-500 transition-colors mb-6 lg:mb-0 font-light z-20;
+}
+
+.prose ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prose li {
+  padding-left: 1em;
+  text-indent: -0.7em;
+}
+
+.prose li:before {
+  color: red !important; /* or whatever color you prefer */
 }
 
 /* change to react-scroll */

@@ -45,14 +45,14 @@ export default function NavBar({ fixed }) {
   const { t } = useTranslation("common");
   return (
     <>
-      <div className={`relative ${onEvents ? 'bg-rose-500' : 'bg-olive-500'}`}>
+      <div className={`relative ${onEvents ? 'bg-blue-dark' : 'bg-olive-500'}`}>
         <div className="modal-fix">
           <div className="mx-auto">
-            <nav className={`px-4 py-5 ${onEvents ? 'bg-rose-500' : 'bg-olive-500'}`}>
+            <nav className={`px-4 py-5 ${onEvents ? 'bg-blue-dark' : 'bg-olive-500'}`}>
               <ul className="hidden lg:flex content-center justify-center items-center pb-6">
                 {navItems.map((item) => (
                   <li
-                    className={`font-light text-xl px-5 transition duration-500 hover:underline ${onEvents ? 'text-blood-500 hover:text-blood-500' : 'text-gold-500 hover:text-gold-400'} `}
+                    className="font-light text-gold-500 text-xl px-5 transition duration-500 hover:underline"
                     key={item.name}
                   >
                     <Link href={item.url}>{t(`${item.name}`)}</Link>
@@ -67,7 +67,7 @@ export default function NavBar({ fixed }) {
               </ul>
 
               <div className="flex justify-end">
-                <div className={`lg:hidden ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
+                <div className="lg:hidden text-gold-500">
                   <Hamburger
                     toggled={showModal}
                     toggle={() => {

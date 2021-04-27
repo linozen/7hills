@@ -10,6 +10,7 @@ import FsLightbox from "fslightbox-react";
 import { useState, useCallback } from "react";
 import Gallery from "react-photo-gallery";
 import Button from "../components/button";
+import ReactMarkdown from 'react-markdown';
 
 export default function Events(props) {
   const { t } = useTranslation("common");
@@ -38,10 +39,10 @@ export default function Events(props) {
         <BackToTop />
 
 
-        <div className="bg-rose-500">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 bg-rose-500 py-10 mx-7 lg:mx-12">
+        <div className="bg-blue-dark lg:px-48">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 bg-blue-dark py-10 mx-8">
 
-            <div className="bg-rose-500 lg:pt-2 -mx-1">
+            <div className="bg-blue-dark lg:pt-2 -mx-1">
               <Gallery
                 direction="row"
                 margin={5}
@@ -55,23 +56,21 @@ export default function Events(props) {
               sources={props.sources}
             />
 
-            <div className="text-blood-500 lg:px-10 mx-auto">
-              <div className="uppercase text-left text-blood-500 text-5xl md:text-7xl pb-2">
-                {props.title}
-              </div>
-              <div
-                className="pb-3 markdown-events"
-                dangerouslySetInnerHTML={{ __html: props.content }}
-              />
+            <div className="lg:hidden text-gold-500 text-3xl md:text-5xl pb-3">
+              {t("What's expecting you")}
+            </div>
+
+            <div className="text-left mx-auto md:px-12 lg:px-0 lg:ml-8 prose md:prose-lg text-gold-500 pt-2">
+              <ReactMarkdown>
+                {props.content}
+              </ReactMarkdown>
               <div className="pb-12">
                 <Button
                   title={t("DOWNLOAD PDF")}
                   link="/menu"
                 />
               </div>
-              <div className="lg:hidden text-3xl md:text-5xl pb-3">
-                {t("What's expecting you")}
-              </div>
+
             </div>
 
           </div>
@@ -95,9 +94,7 @@ export async function getStaticProps({ locale }) {
     }
   })
   const title = locale === "en" ? data.event.title_en : data.event.title_de;
-  const content = await markdownToHtml(
-    locale === "en" ? data.event.content_en : data.event.content_de
-  );
+  const content = locale === "en" ? data.event.content_en : data.event.content_de;
   return {
     props: {
       title,

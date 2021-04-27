@@ -46,13 +46,13 @@ export default function Post({ post, morePosts }) {
 
               <div className="border-t border-b border-gold-500 relative bg-olive-500 flex-1 overflow-hidden">
                 <div className="relative w-full h-full overflow-hidden">
-                  <div className="absolute text-center top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute min-w-full md:min-w-min border-b border-t md:border border-gold-500 bg-olive-500 bg-opacity-70 backdrop-filter backdrop-blur-md px-5 py-2 shadow-2xl">
-                    <span className="text-center uppercase text-3xl md:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300">
-                      {post.title}
-                    </span>
-                  </div>
-                  <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <ButtonScroll link="post-content" />
+                  <div className="uppercase absolute h-full w-full flex flex-col items-center justify-around pt-32">
+                    <div className="px-5 bg-olive-500 py-2 md:px-4 w-full text-center border-b border-t md:border md:max-w-max border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
+                      <span className="text-4xl md:text-6xl shimmer text-center">
+                        {post.title}
+                      </span>
+                    </div>
+                    <ButtonScroll link="content" />
                   </div>
                   <img className="object-cover h-full w-full" alt="trees" src={post.coverImageUrl} />
                 </div>
@@ -60,29 +60,29 @@ export default function Post({ post, morePosts }) {
             </div>
 
             <div className="w-full bg-olive-500 pt-12">
-              <div id="post-content" className="prose md:prose-xl text-gold-500 px-5 mx-auto">
+              <div id="content" className="prose prose-lg md:prose-2xl text-gold-500 px-5 mx-auto">
                 <ReactMarkdown>
                   {post.content}
                 </ReactMarkdown>
 
-                {post.videoUrl ? (
-                  <div className="player-wrapper">
-                    <ReactPlayer
-                      light={post.coverImageUrl}
-                      playing={true}
-                      controls={true}
-                      className='react-player'
-                      volume={0}
-                      url={post.videoUrl}
-                      width='100%'
-                      height='100%'
-                    />
-                  </div>
-                ) : (
-                    <div>
-                    </div>
-                  )}
               </div>
+              {post.videoUrl ? (
+                <div className="mt-12 player-wrapper">
+                  <ReactPlayer
+                    light={post.coverImageUrl}
+                    playing={true}
+                    controls={true}
+                    className='react-player'
+                    volume={0}
+                    url={post.videoUrl}
+                    width='100%'
+                    height='100%'
+                  />
+                </div>
+              ) : (
+                  <div>
+                  </div>
+                )}
               {morePosts.length > 0 && <MoreStories posts={morePosts} />}
             </div>
           </>

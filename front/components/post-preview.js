@@ -1,6 +1,5 @@
 import Date from './date'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function PostPreview({
   title,
@@ -18,7 +17,7 @@ export default function PostPreview({
           </a>
         </Link>
       </div>
-      <h3 className="uppercase text-gold-500 text-3xl mb-3 leading-snug">
+      <h3 className="uppercase text-gold-500 text-2xl md:text-3xl mb-3 leading-snug">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <a className="hover:underline">{title}</a>
         </Link>

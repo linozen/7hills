@@ -13,10 +13,10 @@ export default function Modal({ onClose, navItems }) {
   return (
     <>
       <div
-        className={`w-full h-full fixed inset-0 z-50 ${onEvents ? 'bg-rose-500' : 'bg-olive-500'}`}
+        className={`w-full h-full fixed inset-0 z-50 ${onEvents ? 'bg-blue-dark' : 'bg-olive-500'}`}
         onClick={onClose}
       >
-        <div className={`flex flex-row content-start items-center justify-center static w-full h-full p-10 text-center text-2xl md:text-4xl ${onEvents ? 'text-blood-500' : 'text-gold-500'}`}>
+        <div className="flex flex-row content-start items-center justify-center static w-full h-full p-10 text-center text-2xl md:text-4xl text-gold-500">
           <ul className="">
             <a href="https://instagram.com" target="_blank">
               <button className="text-gold-500 pb-4">
