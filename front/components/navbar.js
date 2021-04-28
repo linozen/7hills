@@ -102,7 +102,7 @@ export default function NavBar({ fixed }) {
                     className="text-xl text-white font-bold leading-relaxed py-2 whitespace-no-wrap uppercase"
                     href="/"
                   >
-                    <img alt="logo" src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} />
+                    <img alt="logo" src={`${onEvents ? '/logo-events.png' : '/logo.png'}`} />
                     {/* <Image src={`${onEvents ? '/logo_events.png' : '/logo.png'}`} width={600} height={155} /> */}
                   </a>
                 </div>
