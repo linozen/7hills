@@ -37,7 +37,7 @@
     "remark-html": "13.0.1",
     "swiper": "6.5.8",
     "tailwindcss": "2.1.2",
-    "webpack": "5.35.1"
+    "webpack": "5.36.0"
   },
   "devDependencies": {
     "eslint": "7.25.0",
