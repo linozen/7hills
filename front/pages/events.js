@@ -42,7 +42,7 @@ export default function Events(props) {
         <div className="bg-blue-dark lg:px-48">
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 bg-blue-dark py-10 mx-8">
 
-            <div className="bg-blue-dark lg:pt-2 -mx-1">
+            <div className="w-full bg-blue-dark lg:pt-2 -mx-1">
               <Gallery
                 direction="row"
                 margin={5}
