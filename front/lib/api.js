@@ -47,6 +47,20 @@ export async function getProducers() {
   return data;
 }
 
+export async function getPrivacy() {
+  const data = fetchAPI(`
+    query {
+      privacy {
+        title_en
+        title_de
+        content_en
+        content_de
+      }
+    }
+  `);
+  return data;
+}
+
 export async function getLocal() {
   const data = fetchAPI(`
     query {
