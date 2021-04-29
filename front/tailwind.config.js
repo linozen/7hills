@@ -48,6 +48,7 @@ module.exports = {
             },
             ul: {
               li: {
+                textIndent: 0,
                 fontFamily: 'Merriweather',
                 '&:before': { backgroundColor: '#dec580' }
               }

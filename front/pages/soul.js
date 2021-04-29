@@ -19,19 +19,22 @@ export default function Soul(props) {
         <Head>
           <title>{props.title} | Seven Hills Restaurant</title>
         </Head>
+
         {/* Content starts here */}
         <div className="flex flex-col h-screen">
+
           {/* NavBar and BackToTop */}
           <div className="w-full flex-initial">
             <NavBar />
           </div>
           <BackToTop />
-          {/* Image with Button */}
+
+          {/* Image with title */}
           <div className="border-t border-b border-gold-500 relative bg-olive-500 flex-1 overflow-hidden">
             <div className="relative w-full h-full overflow-hidden">
               <div className="uppercase absolute h-full w-full flex flex-col items-center justify-around pt-32">
                 <div className="bg-olive-500 py-2 md:px-4 w-full text-center border-b border-t md:border md:max-w-max border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
-                  <span className="text-6xl shimmer">
+                  <span className="text-5xl md:text-6xl shimmer">
                     {props.title}
                   </span>
                 </div>
@@ -41,17 +44,21 @@ export default function Soul(props) {
             </div>
           </div>
         </div>
-        {/* Soul Content */}
+
+        {/* Markdown Content */}
         <div id="content" className="w-full bg-olive-500 pt-12">
-          <div className="prose prose-xl text-gold-500 px-5 mx-auto">
+          <div className="prose prose-lg md:prose-xl text-gold-500 px-5 mx-auto">
             <ReactMarkdown>
               {props.content}
             </ReactMarkdown>
           </div>
         </div>
+
+        {/* More Stories */}
         <div>
           {props.posts.length > 0 && <MoreStories posts={props.posts} />}
         </div>
+
       </Layout>
     </>
   );

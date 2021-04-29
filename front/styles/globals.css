@@ -63,7 +63,7 @@
 
 .react-photo-gallery--gallery > div > img {
   align-self: flex-start !important;
-  max-height: 300px !important;
+  max-height: 600px !important;
   object-fit: cover;
 }
 

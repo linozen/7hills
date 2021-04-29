@@ -52,7 +52,7 @@ export default function Index() {
                 <div className="absolute h-full w-full flex justify-center items-center pt-48">
                   <Button title={t("BOOK EVENT")} link="/events" />
                 </div>
-                <img className="object-cover h-full w-full" alt="events" src="/events.jpg" loading="lazy" />
+                <img className="object-cover h-full w-full" alt="events" src="/events_13.jpg" loading="lazy" />
               </div>
             </Carousel>
           </div>

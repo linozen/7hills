@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <NextNProgress
-        color={`${onEvents ? '#6d2d21' : '#dec580'}`}
+        color='#dec580'
         startPosition={0.3}
         stopDelayMs={200}
         height="1"
