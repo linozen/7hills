@@ -12,16 +12,16 @@ services:
       - db
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.strapi.rule=Host(`analytics.sevenhills-restaurant.de`)"
-      - "traefik.http.routers.strapi.entrypoints=https"
-      - "traefik.http.routers.strapi.tls=true"
-      - "traefik.http.routers.strapi.tls.certresolver=letsencrypt"
-      - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.strapi-http.entrypoints=http"
-      - "traefik.http.routers.strapi-http.rule=Host(`analytics.sevenhills-restaurant.de`)"
-      - "traefik.http.routers.strapi-http.middlewares=strapi-https@docker"
-      - "traefik.http.routers.strapi.middlewares=secHeaders@file"
-      - "traefik.http.services.strapi.loadbalancer.server.port=3002"
+      - "traefik.http.routers.umami.rule=Host(`analytics.sevenhills-restaurant.de`)"
+      - "traefik.http.routers.umami.entrypoints=https"
+      - "traefik.http.routers.umami.tls=true"
+      - "traefik.http.routers.umami.tls.certresolver=letsencrypt"
+      - "traefik.http.middlewares.umami-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.umami-http.entrypoints=http"
+      - "traefik.http.routers.umami-http.rule=Host(`analytics.sevenhills-restaurant.de`)"
+      - "traefik.http.routers.umami-http.middlewares=strapi-https@docker"
+      - "traefik.http.routers.umami.middlewares=secHeaders@file"
+      - "traefik.http.services.umami.loadbalancer.server.port=3002"
   db:
     image: postgres:12-alpine
     environment:
