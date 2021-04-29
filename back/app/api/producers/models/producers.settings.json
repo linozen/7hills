@@ -47,7 +47,8 @@
         "images"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "experience_de": {
       "type": "string"
@@ -57,6 +58,9 @@
     },
     "imageSide": {
       "type": "boolean"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }

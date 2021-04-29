@@ -34,7 +34,7 @@ export default function Soul(props) {
             <div className="relative w-full h-full overflow-hidden">
               <div className="uppercase absolute h-full w-full flex flex-col items-center justify-around pt-32">
                 <div className="bg-olive-500 py-2 md:px-4 w-full text-center border-b border-t md:border md:max-w-max border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
-                  <span className="text-5xl md:text-6xl shimmer">
+                  <span className="text-4xl md:text-6xl shimmer">
                     {props.title}
                   </span>
                 </div>

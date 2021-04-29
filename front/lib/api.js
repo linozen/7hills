@@ -35,6 +35,7 @@ export async function getProducers() {
         products_en
         products_de
         imageSide
+        link
         coverImage {
           url
           width

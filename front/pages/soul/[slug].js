@@ -48,7 +48,7 @@ export default function Post({ post, morePosts }) {
                 <div className="relative w-full h-full overflow-hidden">
                   <div className="uppercase absolute h-full w-full flex flex-col items-center justify-around pt-32">
                     <div className="px-5 bg-olive-500 py-2 md:px-4 w-full text-center border-b border-t md:border md:max-w-max border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
-                      <span className="text-4xl md:text-6xl shimmer text-center">
+                      <span className="text-3xl md:text-6xl shimmer text-center">
                         {post.title}
                       </span>
                     </div>
@@ -59,8 +59,8 @@ export default function Post({ post, morePosts }) {
               </div>
             </div>
 
-            <div className="w-full bg-olive-500 pt-12">
-              <div id="content" className="prose prose-lg md:prose-2xl text-gold-500 px-5 mx-auto">
+            <div id="content" className="w-full bg-olive-500 pt-12">
+              <div className="prose prose-lg md:prose-2xl text-gold-500 px-5 mx-auto">
                 <ReactMarkdown>
                   {post.content}
                 </ReactMarkdown>
