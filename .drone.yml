@@ -33,12 +33,6 @@ steps:
   environment:
     HASH_SALT:
       from_secret: salt
-    POSTGRES_DB:
-      from_secret: db_name
-    POSTGRES_USER:
-      from_secret: db_user
-    POSTGRES_PASSWORD:
-      from_secret: db_pass
   commands:
   - docker-compose -f docker-compose.analytics.yml pull --include-deps
   - docker-compose -f docker-compose.front.yml up -d
