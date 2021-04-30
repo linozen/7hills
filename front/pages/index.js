@@ -44,7 +44,11 @@ export default function Index() {
                 <div className="absolute h-full w-full flex justify-center items-center pt-48">
                   <Button title={t("BOOK TABLE")} link="https:www.opentable.com/" />
                 </div>
-                <img className="object-cover h-full w-full" alt="forest" src="/forest.jpg" />
+                <img
+                  className="object-cover h-full w-full" alt="forest"
+                  src="/small_forest.jpg"
+                  srcset="medium_forest.jpg 800w, large_forest.jpg 1080w"
+                />
               </div>
 
               {/* Image slide with button on medium and small viewports */}
@@ -52,7 +56,11 @@ export default function Index() {
                 <div className="absolute h-full w-full flex justify-center items-center pt-48">
                   <Button title={t("BOOK EVENT")} link="/events" />
                 </div>
-                <img className="object-cover h-full w-full" alt="events" src="/events_13.jpg" loading="lazy" />
+                <img
+                  className="object-cover h-full w-full" alt="forest"
+                  src="/small_events_13.jpg"
+                  srcset="medium_events_13.jpg 800w, large_events_13.jpg 1920w"
+                />
               </div>
             </Carousel>
           </div>
