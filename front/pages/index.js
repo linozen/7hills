@@ -47,7 +47,7 @@ export default function Index() {
                 <img
                   className="object-cover h-full w-full" alt="forest"
                   src="/small_forest.jpg"
-                  srcset="medium_forest.jpg 800w, large_forest.jpg 1080w"
+                  srcset="medium_forest.jpg 800w, large_forest.jpg 1920w"
                 />
               </div>
 
