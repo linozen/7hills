@@ -97,6 +97,12 @@ export async function getEvent() {
         title_de
         content_en
         content_de
+        pdf_en {
+          url
+        }
+        pdf_de {
+          url
+        }
         galleryImages {
           url
           width

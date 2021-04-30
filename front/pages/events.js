@@ -71,7 +71,7 @@ export default function Events(props) {
             </ReactMarkdown>
             <Button
               title={t("DOWNLOAD PDF")}
-              link="/menu"
+              link={props.pdfUrl}
             />
           </div>
         </div>
@@ -106,7 +106,6 @@ export default function Events(props) {
 
 export async function getStaticProps({ locale }) {
   const baseUrl = process.env.STRAPI_API_URL;
-  console.log("URLURLURL", baseUrl)
   const data = await getEvent();
   const sources = data.event.galleryImages.map((item) => baseUrl + item.url);
   const photos = data.event.galleryImages.map(item => {
@@ -118,10 +117,12 @@ export async function getStaticProps({ locale }) {
   })
   const title = locale === "en" ? data.event.title_en : data.event.title_de;
   const content = locale === "en" ? data.event.content_en : data.event.content_de;
+  const pdfUrl = locale === "en" ? baseUrl + data.event.pdf_en.url : baseUrl + data.event.pdf_de.url;
   return {
     props: {
       title,
       content,
+      pdfUrl,
       sources,
       photos,
       ...(await serverSideTranslations(locale, ["common"])),

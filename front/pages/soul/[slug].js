@@ -47,7 +47,7 @@ export default function Post({ post, morePosts }) {
               <div className="border-t border-b border-gold-500 relative bg-olive-500 flex-1 overflow-hidden">
                 <div className="relative w-full h-full overflow-hidden">
                   <div className="uppercase absolute h-full w-full flex flex-col items-center justify-around pt-32">
-                    <div className="px-5 bg-olive-500 py-2 md:px-4 w-full text-center border-b border-t md:border md:max-w-max border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
+                    <div className="px-5 bg-olive-500 py-2 md:px-10 w-full text-center border-b border-t md:border md:max-w-3xl border-gold-500 bg-opacity-70 backdrop-filter backdrop-blur-md shadow-2xl">
                       <span className="text-3xl md:text-6xl shimmer text-center">
                         {post.title}
                       </span>
