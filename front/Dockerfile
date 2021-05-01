@@ -1,7 +1,8 @@
 # base on buster-slim
 FROM node:14-buster-slim AS base
 WORKDIR /base
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq
 
 # dependencies
 COPY package*.json ./
@@ -20,7 +21,6 @@ RUN npm run build
 FROM build AS production
 WORKDIR /home/node/app
 ENV NODE_ENV=production
-ENV STRAPI_API_URL=https://api.sevenhills-restaurant.de
 COPY --from=build --chown=node:node /build/next.config.js ./
 COPY --from=build --chown=node:node /build/next-i18next.config.js ./
 COPY --from=build --chown=node:node /build/public ./public
