@@ -8,10 +8,12 @@ import { appWithTranslation } from "next-i18next";
 // nprogress
 import NextNProgress from "nextjs-progressbar";
 import { useRouter } from 'next/router';
+// next-seo
+import { DefaultSeo } from 'next-seo';
+import SEO from '../next-seo.config'
 
 function MyApp({ Component, pageProps }) {
   const curRoute = useRouter().pathname;
-  const onEvents = (curRoute == "/events") ? true : false
   useEffect(() => {
     AOS.init({
       once: true,
@@ -22,11 +24,12 @@ function MyApp({ Component, pageProps }) {
   });
   return (
     <>
+      <DefaultSeo {...SEO} />
       <NextNProgress
         color='#dec580'
         startPosition={0.3}
         stopDelayMs={200}
-        height="1"
+        height="2"
       />
       <Component {...pageProps} />
     </>

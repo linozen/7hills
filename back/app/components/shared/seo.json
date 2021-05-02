@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_seos",
+  "info": {
+    "name": "SEO",
+    "icon": "crosshairs",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "metaDescription_en": {
+      "type": "text"
+    },
+    "ShareImage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.share-image"
+    },
+    "keywords_en": {
+      "type": "text"
+    },
+    "metaDescription_de": {
+      "type": "text"
+    },
+    "keywords_de": {
+      "type": "text"
+    }
+  }
+}

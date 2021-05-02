@@ -1,8 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "locals",
+  "collectionName": "index",
   "info": {
-    "name": "/local",
+    "name": "/",
     "description": ""
   },
   "options": {
@@ -11,18 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "content_en": {
-      "type": "richtext"
-    },
-    "content_de": {
-      "type": "richtext"
-    },
-    "title_en": {
-      "type": "string"
-    },
-    "title_de": {
-      "type": "string"
-    },
     "SEO": {
       "type": "component",
       "repeatable": false,

@@ -10,7 +10,7 @@ export default function Menu({ props }) {
     <>
       <div className="bg-olive-500 py-10">
         <Container>
-          <div className="prose md:prose-xl text-gold-500 px-5 mx-auto lg:text-center" data-aos="fade-up">
+          <div className="min-h-screen prose md:prose-xl text-gold-500 px-5 mx-auto lg:text-center" data-aos="fade-up">
             <ReactMarkdown>
               {props.content}
             </ReactMarkdown>

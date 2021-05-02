@@ -1,21 +1,25 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from "next/head";
-import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { getIndex } from '../lib/api';
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import Button from "../components/button";
 import Carousel from "nuka-carousel";
+import { NextSeo } from 'next-seo';
 
-export default function Index() {
+export default function Index(props) {
   const { t } = useTranslation("common");
   return (
     <>
+      <NextSeo
+        description={props.description}
+        openGraph={{
+          description: props.description,
+        }}
+      />
       <Layout>
-        <Head>
-          <title>Seven Hills Restaurant</title>
-        </Head>
         <div className="flex flex-col h-screen">
           <div className="relative w-full flex-initial">
             <NavBar />
@@ -47,7 +51,7 @@ export default function Index() {
                 <img
                   className="object-cover h-full w-full" alt="forest"
                   src="/small_forest.jpg"
-                  srcset="medium_forest.jpg 800w, large_forest.jpg 1920w"
+                  srcSet="medium_forest.jpg 800w, large_forest.jpg 1920w"
                 />
               </div>
 
@@ -59,7 +63,7 @@ export default function Index() {
                 <img
                   className="object-cover h-full w-full" alt="forest"
                   src="/small_events_13.jpg"
-                  srcset="medium_events_13.jpg 800w, large_events_13.jpg 1920w"
+                  srcSet="medium_events_13.jpg 800w, large_events_13.jpg 1920w"
                 />
               </div>
             </Carousel>
@@ -70,8 +74,22 @@ export default function Index() {
   );
 }
 
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ["common"])),
-  },
-});
+export async function getStaticProps({ locale }) {
+  const data = await getIndex();
+
+  const description = locale === 'en' ?
+    data.index.SEO.metaDescription_en :
+    data.index.SEO.metaDescription_de
+
+  const keywords = locale === 'en' ?
+    data.index.SEO.keywords_en :
+    data.index.SEO.keywords_de
+
+  return {
+    props: {
+      description,
+      keywords,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  }
+};

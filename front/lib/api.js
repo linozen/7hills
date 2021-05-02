@@ -19,6 +19,22 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data;
 }
 
+export async function getIndex() {
+  const data = fetchAPI(`
+    query {
+      index {
+        SEO {
+          metaDescription_en
+          metaDescription_de
+          keywords_en
+          keywords_de
+          }
+        }
+      }
+  `);
+  return data;
+}
+
 export async function getProducers() {
   const data = fetchAPI(`
     query {
@@ -65,6 +81,12 @@ export async function getLocal() {
   const data = fetchAPI(`
     query {
       local {
+        SEO {
+          metaDescription_en
+          metaDescription_de
+          keywords_en
+          keywords_de
+          }
         title_en
         title_de
         content_en
@@ -79,6 +101,12 @@ export async function getSoul() {
   const data = fetchAPI(`
     query {
       soul {
+        SEO {
+          metaDescription_en
+          metaDescription_de
+          keywords_en
+          keywords_de
+          }
         title_en
         title_de
         content_en
@@ -93,6 +121,18 @@ export async function getEvent() {
   const data = fetchAPI(`
     query {
       event {
+        SEO {
+          metaDescription_en
+          metaDescription_de
+          keywords_en
+          keywords_de
+          ShareImage {
+            alt
+            media {
+              url
+              }
+            }
+          }
         title_en
         title_de
         content_en
@@ -118,6 +158,12 @@ export async function getDaily() {
   const data = fetchAPI(`
     query {
       daily {
+        SEO {
+          metaDescription_en
+          metaDescription_de
+          keywords_en
+          keywords_de
+          }
         title_en
         title_de
         content_en
@@ -132,6 +178,12 @@ export async function getSeasonal() {
   const data = fetchAPI(`
     query {
       seasonal {
+        SEO {
+          metaDescription_en
+          metaDescription_de
+          keywords_en
+          keywords_de
+          }
         title_en
         title_de
         content_en

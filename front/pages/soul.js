@@ -1,8 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Head from "next/head";
-import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation, withTranslation, Trans } from "next-i18next";
 import { getAllPostsForSoul, getSoul } from '../lib/api.js'
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
@@ -10,16 +7,18 @@ import ButtonScroll from "../components/button-scroll";
 import BackToTop from "@/components/back-to-top";
 import ReactMarkdown from "react-markdown";
 import MoreStories from "@/components/more-stories.js";
+import { NextSeo } from 'next-seo';
 
 export default function Soul(props) {
-  const { t } = useTranslation("common");
   return (
     <>
+      <NextSeo
+        description={props.description}
+        openGraph={{
+          description: props.description,
+        }}
+      />
       <Layout>
-        <Head>
-          <title>{props.title} | Seven Hills Restaurant</title>
-        </Head>
-
         {/* Content starts here */}
         <div className="flex flex-col h-screen">
 
@@ -101,10 +100,20 @@ export async function getStaticProps({ locale }) {
   const title = locale === "en" ? dataSoul.soul.title_en : dataSoul.soul.title_de;
   const content = locale === "en" ? dataSoul.soul.content_en : dataSoul.soul.content_de;
 
+  const description = locale === 'en' ?
+    dataSoul.soul.SEO.metaDescription_en :
+    dataSoul.soul.SEO.metaDescription_de
+
+  const keywords = locale === 'en' ?
+    dataSoul.soul.SEO.keywords_en :
+    dataSoul.soul.SEO.keywords_de
+
   return {
     props: {
       apiUrl,
       title,
+      description,
+      keywords,
       content,
       posts,
       ...(await serverSideTranslations(locale, ["common"])),

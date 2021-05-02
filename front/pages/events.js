@@ -1,17 +1,16 @@
-import Head from "next/head";
 import { getEvent } from "../lib/api";
-import markdownToHtml from "../lib/markdownToHtml";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation, withTranslation, Trans } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import BackToTop from "../components/back-to-top";
 import FsLightbox from "fslightbox-react";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Gallery from "react-photo-gallery";
 import Button from "../components/button";
 import ReactMarkdown from 'react-markdown';
 import ButtonScroll from "../components/button-scroll";
+import { NextSeo } from 'next-seo';
 
 export default function Events(props) {
   const { t } = useTranslation("common");
@@ -32,11 +31,22 @@ export default function Events(props) {
 
   return (
     <>
-      <Layout>
-        <Head>
-          <title>Seven Hills Restaurant</title>
-        </Head>
+      <NextSeo
+        title={props.title}
+        titleTemplate='%s | Seven Hills Restaurant'
+        description={props.description}
+        openGraph={{
+          description: props.description,
+          images: [
+            {
+              url: props.shareImage.media.url,
+              alt: props.shareImage.alt,
+            },
+          ],
+        }}
+      />
 
+      <Layout>
         {/* Content starts here */}
         <div className="flex flex-col h-screen">
 
@@ -45,7 +55,6 @@ export default function Events(props) {
             <NavBar />
           </div>
           <BackToTop />
-
 
           {/* Image with title */}
           <div className="border-t border-b border-gold-500 relative bg-blue-dark flex-1 overflow-hidden">
@@ -95,10 +104,6 @@ export default function Events(props) {
             sources={props.sources}
           />
         </div>
-
-
-
-
       </Layout>
     </>
   );
@@ -107,6 +112,15 @@ export default function Events(props) {
 export async function getStaticProps({ locale }) {
   const baseUrl = process.env.STRAPI_API_URL;
   const data = await getEvent();
+
+  const description = locale === 'en' ?
+    data.event.SEO.metaDescription_en :
+    data.event.SEO.metaDescription_de
+
+  const keywords = locale === 'en' ?
+    data.event.SEO.keywords_en :
+    data.event.SEO.keywords_de
+
   const sources = data.event.galleryImages.map((item) => baseUrl + item.url);
   const photos = data.event.galleryImages.map(item => {
     return {
@@ -118,9 +132,14 @@ export async function getStaticProps({ locale }) {
   const title = locale === "en" ? data.event.title_en : data.event.title_de;
   const content = locale === "en" ? data.event.content_en : data.event.content_de;
   const pdfUrl = locale === "en" ? baseUrl + data.event.pdf_en.url : baseUrl + data.event.pdf_de.url;
+  const shareImage = data.event.SEO.ShareImage
+
   return {
     props: {
       title,
+      description,
+      keywords,
+      shareImage,
       content,
       pdfUrl,
       sources,
