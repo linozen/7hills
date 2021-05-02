@@ -15,6 +15,10 @@ export default function Index(props) {
     <>
       <NextSeo
         description={props.description}
+        additionalMetaTags={[{
+          name: 'keywords',
+          content: props.keywords
+        }]}
         openGraph={{
           description: props.description,
         }}

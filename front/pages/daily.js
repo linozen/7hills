@@ -14,6 +14,10 @@ export default function Daily(props) {
         title={props.title}
         titleTemplate='%s | Seven Hills Restaurant'
         description={props.description}
+        additionalMetaTags={[{
+          name: 'keywords',
+          content: props.keywords
+        }]}
         openGraph={{
           description: props.description,
         }}

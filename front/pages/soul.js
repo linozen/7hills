@@ -14,6 +14,10 @@ export default function Soul(props) {
     <>
       <NextSeo
         description={props.description}
+        additionalMetaTags={[{
+          name: 'keywords',
+          content: props.keywords
+        }]}
         openGraph={{
           description: props.description,
         }}
