@@ -10,7 +10,7 @@ export async function getServerSideProps(ctx) {
     const fields_en = data.map(p => {
         let properties = {
             "loc": "https://www.sevenhills-restaurant.de/soul/" + p.slug,
-            "lastmod": new Date(p.date).toDateString(),
+            "lastmod": new Date(p.date).toISOString(),
         }
         return properties
     });
