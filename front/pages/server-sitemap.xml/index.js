@@ -9,14 +9,14 @@ export async function getServerSideProps(ctx) {
 
     const fields_en = data.map(p => {
         let properties = {
-            "loc": "https://www.sevenhills-restaurant.de/" + p.slug,
+            "loc": "https://www.sevenhills-restaurant.de/soul/" + p.slug,
             "lastmod": new Date(p.date).toDateString(),
         }
         return properties
     });
     const fields_de = data.map(p => {
         let properties = {
-            "loc": "https://www.sevenhills-restaurant.de/de/" + p.slug,
+            "loc": "https://www.sevenhills-restaurant.de/de/soul/" + p.slug,
             "lastmod": new Date(p.date).toISOString(),
         }
         return properties
