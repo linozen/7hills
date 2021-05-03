@@ -3,9 +3,7 @@ import { Fade as Hamburger } from "hamburger-react";
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import useLockBodyScroll from "./utils/body-lock-scroll";
-import Image from "next/image";
 import Modal from "./modal";
-import Container from "./container";
 import { useTranslation } from "next-i18next";
 import LanguageSwitcher from "./language-switcher";
 import { useRouter } from 'next/router';
@@ -31,10 +29,10 @@ const navItems = [
     name: "EVENTS",
     url: "/events",
   },
-  {
-    name: "RESERVATION",
-    url: "https://opentable.de",
-  },
+  // {
+  //   name: "RESERVATION",
+  //   url: "https://opentable.de",
+  // },
 ];
 
 export default function NavBar({ fixed }) {

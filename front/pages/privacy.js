@@ -17,7 +17,7 @@ export default function Local(props) {
         <NavBar />
         <div className="w-full bg-olive-500">
           <div className="flex items-center justify-center container mx-auto md:py-12">
-            <div className="prose prose-lg md:prose-xl px-5 lg:px-12 text-gold-500">
+            <div className="prose prose-lg md:prose-xl break-words overflow-hidden px-5 lg:px-12 text-gold-500">
               <ReactMarkdown>
                 {props.content}
               </ReactMarkdown>

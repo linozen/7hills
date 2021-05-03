@@ -18,9 +18,12 @@ export default function Footer() {
             </Trans>
           </h3>
           <div className="flex flex-col lg:flex-row justify-center items-center lg:p-3 lg:w-1/2">
+            {/* <Button */}
+            {/*   title={t('BOOK TABLE')} */}
+            {/*   link="https://www.opentable.de/restref/client/?restref=248958&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79" /> */}
             <Button
-              title={t('BOOK TABLE')}
-              link="https://www.opentable.de/restref/client/?restref=248958&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79" />
+              title={t('SEE MENU')}
+              link="/seasonal" />
           </div>
           <Link href="/privacy">
             <a

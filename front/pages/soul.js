@@ -4,7 +4,7 @@ import { getAllPostsForSoul, getSoul } from '../lib/api.js'
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import ButtonScroll from "../components/button-scroll";
-import BackToTop from "@/components/back-to-top";
+import BackToTop from '../components/back-to-top';
 import ReactMarkdown from "react-markdown";
 import MoreStories from "@/components/more-stories.js";
 import { NextSeo } from 'next-seo';

@@ -49,8 +49,11 @@ export default function Index(props) {
 
               {/* Image slide with button on medium and small viewports */}
               <div className="relative w-full h-full overflow-hidden">
+                {/* <div className="absolute h-full w-full flex justify-center items-center pt-48"> */}
+                {/*   <Button title={t("BOOK TABLE")} link="https://www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79" /> */}
+                {/* </div> */}
                 <div className="absolute h-full w-full flex justify-center items-center pt-48">
-                  <Button title={t("BOOK TABLE")} link="https://www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79" />
+                  <Button title={t("SEE MENU")} link="/seasonal" />
                 </div>
                 <img
                   className="object-cover h-full w-full" alt="forest"

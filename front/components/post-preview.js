@@ -19,7 +19,7 @@ export default function PostPreview({
       </div>
       <h3 className="uppercase text-gold-500 text-2xl md:text-3xl mb-3 leading-snug">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
-          <a className="hover:underline">{title}</a>
+          <a className="hover:underline overflow-hidden break-words">{title}</a>
         </Link>
       </h3>
       <div className="lowercase text-xl mb-4 text-gold-500 font-light">
