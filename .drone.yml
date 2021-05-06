@@ -37,6 +37,14 @@ steps:
   - docker-compose -f docker-compose.analytics.yml pull --include-deps
   - docker-compose -f docker-compose.analytics.yml up -d
 
+- name: prune images
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - docker system prune
+
 trigger:
   branch:
   - master
