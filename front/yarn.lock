@@ -3368,10 +3368,10 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.3, 
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-hamburger-react@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/hamburger-react/-/hamburger-react-2.4.0.tgz#b2950fe28c4cf46b41e6887550140c3c17cb66a3"
-  integrity sha512-VYUhF7X9JszeHXSGHKJLaTIWPc/U64fVdcr4DTmOb04gOoJwricqi6gcRZXAylVtsJOs4CWtMVZNnWjXiWF0Xw==
+hamburger-react@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/hamburger-react/-/hamburger-react-2.4.1.tgz#44fac99c30720fe8ed098b2a33e919b14b3e007e"
+  integrity sha512-oqG9CrTVi8wM/dyQQh3JJOOfEiol9ChLOqwtjx+hFyRu0nYfe2ymNmzi2wtfQTDyExUdqETdyACZV9KZ9wpApA==
 
 har-schema@^2.0.0:
   version "2.0.0"
