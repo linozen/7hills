@@ -8,7 +8,7 @@ workspace:
 
 steps:
 - name: deploy backend
-  image: docker/compose:1.29.1
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
@@ -17,7 +17,7 @@ steps:
   - docker-compose -f docker-compose.back.yml up -d
 
 - name: deploy frontend
-  image: docker/compose:1.29.1
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
@@ -26,7 +26,7 @@ steps:
   - docker-compose -f docker-compose.front.yml up -d
 
 - name: deploy analytics
-  image: docker/compose:1.29.1
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
