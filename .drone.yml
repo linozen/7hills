@@ -14,6 +14,10 @@ steps:
     path: /var/run/docker.sock
   commands:
   - docker-compose -f docker-compose.back.yml build --pull
+  when:
+    event:
+    - push
+    - pull_request
 
 - name: deploy backend
   image: docker/compose:1.29.1
@@ -35,6 +39,11 @@ steps:
     path: /var/run/docker.sock
   commands:
   - docker-compose -f docker-compose.front.yml build --pull --no-cache
+  when:
+    event:
+    - cron
+    - push
+    - pull_request
 
 - name: deploy frontend
   image: docker/compose:1.29.1
@@ -47,6 +56,7 @@ steps:
     branch:
     - master
     event:
+    - cron
     - push
 
 - name: prune images
