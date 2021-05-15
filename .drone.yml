@@ -7,14 +7,53 @@ workspace:
   path: /home/deployr/7hills
 
 steps:
-- name: deploy backend
+- name: build backend
   image: docker/compose:1.29.1
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
   - docker-compose -f docker-compose.back.yml build --pull
+  when:
+    event:
+    - push
+    - pull_request
+
+- name: deploy backend
+  image: docker/compose:1.29.1
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
   - docker-compose -f docker-compose.back.yml up -d
+  when:
+    branch:
+    - master
+    event:
+    - push
+
+- name: build frontend (with cache)
+  image: docker/compose:1.29.1
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - docker-compose -f docker-compose.front.yml build --pull
+  when:
+    event:
+    - push
+    - pull_request
+
+- name: build frontend (without cache)
+  image: docker/compose:1.29.1
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - docker-compose -f docker-compose.front.yml build --pull --no-cache
+  when:
+    event:
+    - cron
 
 - name: deploy frontend
   image: docker/compose:1.29.1
@@ -22,20 +61,13 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker-compose -f docker-compose.front.yml build --pull --no-cache
   - docker-compose -f docker-compose.front.yml up -d
-
-- name: deploy analytics
-  image: docker/compose:1.29.1
-  volumes:
-  - name: dockersock
-    path: /var/run/docker.sock
-  environment:
-    HASH_SALT:
-      from_secret: salt
-  commands:
-  - docker-compose -f docker-compose.analytics.yml pull --include-deps
-  - docker-compose -f docker-compose.analytics.yml up -d
+  when:
+    branch:
+    - master
+    event:
+    - cron
+    - push
 
 - name: prune images
   image: docker:dind
@@ -44,12 +76,6 @@ steps:
     path: /var/run/docker.sock
   commands:
   - docker system prune -f
-
-trigger:
-  branch:
-  - master
-  event:
-  - push
 
 volumes:
 - name: dockersock
