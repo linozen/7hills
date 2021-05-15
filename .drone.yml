@@ -76,6 +76,9 @@ steps:
     path: /var/run/docker.sock
   commands:
   - docker system prune -f
+  when:
+    event:
+    - cron
 
 volumes:
 - name: dockersock
