@@ -55,20 +55,6 @@ steps:
     event:
     - cron
 
-- name: deploy analytics
-  image: docker/compose:1.29.2
-  volumes:
-  - name: dockersock
-    path: /var/run/docker.sock
-  commands:
-  - docker-compose -f docker-compose.front.yml up -d
-  when:
-    branch:
-    - master
-    event:
-    - cron
-    - push
-
 - name: prune images
   image: docker:dind
   volumes:
