@@ -15,6 +15,8 @@ steps:
   commands:
   - docker-compose -f docker-compose.back.yml build --pull
   when:
+    branch:
+    - master
     event:
     - push
     - pull_request
@@ -40,6 +42,8 @@ steps:
   commands:
   - docker-compose -f docker-compose.front.yml build --pull
   when:
+    branch:
+    - master
     event:
     - push
     - pull_request
@@ -52,6 +56,8 @@ steps:
   commands:
   - docker-compose -f docker-compose.front.yml build --pull --no-cache
   when:
+    branch:
+    - master
     event:
     - cron
 
@@ -77,6 +83,8 @@ steps:
   commands:
   - docker system prune -f
   when:
+    branch:
+    - master
     event:
     - cron
 
