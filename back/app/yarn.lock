@@ -10176,6 +10176,7 @@ strapi-helper-plugin@3.6.2:
     styled-components "^5.2.3"
     whatwg-fetch "^3.6.2"
 
+<<<<<<< HEAD
 strapi-plugin-content-manager@3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.6.2.tgz#3ac0b3e9d63d8eeb97d41cba82e91c40562d4122"
@@ -10187,6 +10188,19 @@ strapi-plugin-content-manager@3.6.2:
     "@buffetjs/icons" "3.3.6"
     "@buffetjs/styles" "3.3.6"
     "@buffetjs/utils" "3.3.6"
+=======
+strapi-plugin-content-manager@3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-content-manager/-/strapi-plugin-content-manager-3.6.1.tgz#3d078b0d1aaf664f6f2122b06df78a94ed4c12bc"
+  integrity sha512-mUdVBvfWPqDTUcLyEzqmhLvxBe/ynpbEJe1/Hbec7T4Ygu2fJ1EGG7h0pr6Tkk8kR4Kq7v6baYEtxZdMLw5/ig==
+  dependencies:
+    "@buffetjs/core" "3.3.5"
+    "@buffetjs/custom" "3.3.5"
+    "@buffetjs/hooks" "3.3.5"
+    "@buffetjs/icons" "3.3.5"
+    "@buffetjs/styles" "3.3.5"
+    "@buffetjs/utils" "3.3.5"
+>>>>>>> origin/renovate/strapi-plugin-upload-3.6.x
     "@sindresorhus/slugify" "1.1.0"
     classnames "^2.3.1"
     codemirror "^5.61.0"
@@ -10285,17 +10299,17 @@ strapi-plugin-graphql@3.6.2:
     pluralize "^8.0.0"
     strapi-utils "3.6.2"
 
-strapi-plugin-upload@3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-upload/-/strapi-plugin-upload-3.6.1.tgz#86a2c44cea4bc95427f857889c5d4e2ca80d3976"
-  integrity sha512-m9xOqnUFfSfHZMbq2LliYsxSAmdgVcCo9T0wUZaaefaLP6GyE/kMLuVDtuVlOgZFZsgLSbmSw1Y5ZZeAVXivEQ==
+strapi-plugin-upload@3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-upload/-/strapi-plugin-upload-3.6.2.tgz#602c9afc19c04efb8068a82eee67ed4c79c55522"
+  integrity sha512-cyvREiuxF5Wql1ojWfsR3xWfVBA0UrgLxq5HSGwEagSt3+IV8ZzEBIDPduj47e5XuHuuh9nYD7VXnBnRZJCD7Q==
   dependencies:
-    "@buffetjs/core" "3.3.5"
-    "@buffetjs/custom" "3.3.5"
-    "@buffetjs/hooks" "3.3.5"
-    "@buffetjs/icons" "3.3.5"
-    "@buffetjs/styles" "3.3.5"
-    "@buffetjs/utils" "3.3.5"
+    "@buffetjs/core" "3.3.6"
+    "@buffetjs/custom" "3.3.6"
+    "@buffetjs/hooks" "3.3.6"
+    "@buffetjs/icons" "3.3.6"
+    "@buffetjs/styles" "3.3.6"
+    "@buffetjs/utils" "3.3.6"
     byte-size "^7.0.1"
     cropperjs "^1.5.11"
     immer "^8.0.1"
@@ -10314,9 +10328,9 @@ strapi-plugin-upload@3.6.1:
     react-router-dom "^5.0.0"
     reactstrap "8.4.1"
     sharp "0.28.1"
-    strapi-helper-plugin "3.6.1"
-    strapi-provider-upload-local "3.6.1"
-    strapi-utils "3.6.1"
+    strapi-helper-plugin "3.6.2"
+    strapi-provider-upload-local "3.6.2"
+    strapi-utils "3.6.2"
     stream-to-array "^2.3.0"
     uuid "^3.2.1"
 
@@ -10360,10 +10374,10 @@ strapi-provider-email-sendmail@3.6.2:
     sendmail "^1.6.1"
     strapi-utils "3.6.2"
 
-strapi-provider-upload-local@3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/strapi-provider-upload-local/-/strapi-provider-upload-local-3.6.1.tgz#d24bd23bf5db6778ce800898d3c21a9f92721872"
-  integrity sha512-8BUTXbt+u8moAbghhBp05j1lA+k936h4p9QOKAFHQ9IGbEzxxiR/5kJ1K3ZpJPSD10ex7343wpoqJuFV9PLrRA==
+strapi-provider-upload-local@3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/strapi-provider-upload-local/-/strapi-provider-upload-local-3.6.2.tgz#a4345ffffef4a4e57ea8223e9fd3c5c034f398fb"
+  integrity sha512-0WKnz2EKiNCOO+Zq7+t7l5GMlzuiy6yfGfC19b1ONL9egfSkEtW8luMdFugZcYaxIBJUyzWEUT+Nql8XY/4isw==
 
 strapi-utils@3.6.1:
   version "3.6.1"
