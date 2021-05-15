@@ -1,12 +1,12 @@
 # base on buster-slim
-FROM node:14-buster-slim AS base
+FROM node:16-buster-slim AS base
 WORKDIR /base
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq
 
 # dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY . .
 
 # build
