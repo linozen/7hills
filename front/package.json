@@ -14,7 +14,7 @@
     "aos": "3.0.0-beta.6",
     "autoprefixer": "10.2.5",
     "classnames": "2.3.1",
-    "date-fns": "2.21.1",
+    "date-fns": "2.21.3",
     "fslightbox-react": "1.6.2",
     "hamburger-react": "2.4.1",
     "next": "10.1.3",
