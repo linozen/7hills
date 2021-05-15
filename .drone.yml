@@ -7,8 +7,8 @@ workspace:
   path: /home/deployr/7hills
 
 steps:
-- name: build backend
-  image: docker/compose:1.29.1
+- name: deploy backend
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
@@ -20,7 +20,7 @@ steps:
     - pull_request
 
 - name: deploy backend
-  image: docker/compose:1.29.1
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
@@ -33,7 +33,7 @@ steps:
     - push
 
 - name: build frontend (with cache)
-  image: docker/compose:1.29.1
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
@@ -45,7 +45,7 @@ steps:
     - pull_request
 
 - name: build frontend (without cache)
-  image: docker/compose:1.29.1
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
@@ -55,8 +55,8 @@ steps:
     event:
     - cron
 
-- name: deploy frontend
-  image: docker/compose:1.29.1
+- name: deploy analytics
+  image: docker/compose:1.29.2
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
