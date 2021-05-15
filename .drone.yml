@@ -32,7 +32,19 @@ steps:
     event:
     - push
 
-- name: build frontend
+- name: build frontend (with cache)
+  image: docker/compose:1.29.1
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - docker-compose -f docker-compose.front.yml build --pull
+  when:
+    event:
+    - push
+    - pull_request
+
+- name: build frontend (without cache)
   image: docker/compose:1.29.1
   volumes:
   - name: dockersock
@@ -42,8 +54,6 @@ steps:
   when:
     event:
     - cron
-    - push
-    - pull_request
 
 - name: deploy frontend
   image: docker/compose:1.29.1
