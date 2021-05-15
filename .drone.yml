@@ -36,7 +36,7 @@ steps:
   commands:
   - docker-compose -f docker-compose.front.yml build --pull --no-cache
 
-  - name: deploy frontend
+- name: deploy frontend
   image: docker/compose:1.29.1
   volumes:
   - name: dockersock
