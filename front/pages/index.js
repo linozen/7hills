@@ -2,12 +2,13 @@
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { getIndex } from '../lib/api';
+import { getIndex } from "../lib/api";
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import Button from "../components/button";
+import ButtonLinkExternal from "../components/button-link-external";
 import Carousel from "nuka-carousel";
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
 
 export default function Index(props) {
   const { t } = useTranslation("common");
@@ -15,10 +16,12 @@ export default function Index(props) {
     <>
       <NextSeo
         description={props.description}
-        additionalMetaTags={[{
-          name: 'keywords',
-          content: props.keywords
-        }]}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: props.keywords,
+          },
+        ]}
         openGraph={{
           description: props.description,
         }}
@@ -35,7 +38,7 @@ export default function Index(props) {
               autoplayInterval={6000}
               speed={1200}
               pauseOnHover={true}
-              renderBottomCenterControls={({ }) => null}
+              renderBottomCenterControls={({}) => null}
               defaultControlsConfig={{
                 nextButtonText: ">",
                 prevButtonText: "<",
@@ -46,17 +49,20 @@ export default function Index(props) {
               transitionMode="fade"
               wrapAround={true}
             >
-
               {/* Image slide with button on medium and small viewports */}
               <div className="relative w-full h-full overflow-hidden">
-                {/* <div className="absolute h-full w-full flex justify-center items-center pt-48"> */}
-                {/*   <Button title={t("BOOK TABLE")} link="https://www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79" /> */}
-                {/* </div> */}
                 <div className="absolute h-full w-full flex justify-center items-center pt-48">
-                  <Button title={t("SEE MENU")} link="/seasonal" />
+                  <ButtonLinkExternal
+                    title={t("BOOK TABLE")}
+                    link="https:www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79"
+                  />
                 </div>
+                {/* <div className="absolute h-full w-full flex justify-center items-center pt-48"> */}
+                {/*   <Button title={t("SEE MENU")} link="/seasonal" /> */}
+                {/* </div> */}
                 <img
-                  className="object-cover h-full w-full" alt="forest"
+                  className="object-cover h-full w-full"
+                  alt="forest"
                   src="/small_forest.jpg"
                   srcSet="medium_forest.jpg 800w, large_forest.jpg 1920w"
                 />
@@ -68,7 +74,8 @@ export default function Index(props) {
                   <Button title={t("BOOK EVENT")} link="/events" />
                 </div>
                 <img
-                  className="object-cover h-full w-full" alt="forest"
+                  className="object-cover h-full w-full"
+                  alt="forest"
                   src="/small_events_13.jpg"
                   srcSet="medium_events_13.jpg 800w, large_events_13.jpg 1920w"
                 />
@@ -84,13 +91,13 @@ export default function Index(props) {
 export async function getStaticProps({ locale }) {
   const data = await getIndex();
 
-  const description = locale === 'en' ?
-    data.index.SEO.metaDescription_en :
-    data.index.SEO.metaDescription_de
+  const description =
+    locale === "en"
+      ? data.index.SEO.metaDescription_en
+      : data.index.SEO.metaDescription_de;
 
-  const keywords = locale === 'en' ?
-    data.index.SEO.keywords_en :
-    data.index.SEO.keywords_de
+  const keywords =
+    locale === "en" ? data.index.SEO.keywords_en : data.index.SEO.keywords_de;
 
   return {
     props: {
@@ -98,5 +105,5 @@ export async function getStaticProps({ locale }) {
       keywords,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-  }
-};
+  };
+}
