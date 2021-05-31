@@ -1,15 +1,17 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function ButtonLinkExternal(props) {
+export default function ReservationButton(props) {
   const title = props.title;
-  const link = props.link;
+
   const curRoute = useRouter().pathname;
   const onEvents = curRoute == "/events" ? true : false;
 
   return (
     <>
-      <a href={link} target="_blank">
+      <a
+        href="https:www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79"
+        target="_blank"
+      >
         <button
           className={`button ${
             onEvents
