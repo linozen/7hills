@@ -9,7 +9,7 @@ export default function ReservationButton(props) {
   return (
     <>
       <a
-        href="https:www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79"
+        href="https://www.opentable.de/restref/client/?restref=248958&lang=de-DE&ot_source=Restaurant%20website&corrid=b92b7fc3-8dab-4563-8edd-464ff717eb79"
         target="_blank"
       >
         <button
