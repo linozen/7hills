@@ -1,7 +1,8 @@
 # base on buster-slim
 FROM node:14-buster-slim AS base
 WORKDIR /base
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq
 
 # dependencies
 COPY package*.json ./

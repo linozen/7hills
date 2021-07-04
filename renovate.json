@@ -1,9 +1,15 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:js-app"],
-  "prHourlyLimit": 0,
-  "schedule": "monthly",
-  "rebaseWhen": "behind-base-branch",
-  "prCreation": "not-pending",
-  "prConcurrentLimit": 30
+  "separateMajorMinor": false,
+  "extends": [
+    ":preserveSemverRanges",
+    "group:all",
+    "schedule:monthly",
+    ":maintainLockFilesMonthly"
+  ],
+  "lockFileMaintenance": {
+    "extends": [
+      "group:all"
+    ],
+    "commitMessageAction": "Update"
+  }
 }
