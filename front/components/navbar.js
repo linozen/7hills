@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Fade as Hamburger } from "hamburger-react";
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
@@ -33,7 +32,7 @@ const navItems = [
 
 export default function NavBar({ fixed }) {
   const [locked, toggleLocked] = useLockBodyScroll(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   const curRoute = useRouter().pathname;
   const onEvents = curRoute == "/events" ? true : false;
   const { t } = useTranslation("common");
