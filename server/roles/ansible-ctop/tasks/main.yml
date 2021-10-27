@@ -1,0 +1,21 @@
+---
+- name: Download ctop binary
+  get_url:
+    url: "https://github.com/bcicen/ctop/releases/download/{{ ctop_version }}/ctop-{{ ctop_version }}-linux-amd64"
+    dest: "/usr/local/bin/ctop"
+    owner: "root"
+    mode: "0755"
+    checksum: "sha256:{{ ctop_checksum }}"
+
+- name: Ensure config dir exists
+  file:
+    path: "/root/.config/ctop"
+    state: directory
+    recurse: true
+    owner: "root"
+
+- name: Copy config into place
+  copy:
+    src: config
+    owner: "root"
+    dest: "/root/.config/ctop/config"

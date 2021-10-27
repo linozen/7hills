@@ -1,0 +1,30 @@
+---
+- name: Setup server (install packages)
+  hosts: all
+  tasks:
+    - name: Install essential packages
+      apt:
+        pkg:
+          - "borgbackup"
+          - "borgmatic"
+          - "curl"
+          - "dbus-user-session"
+          - "git"
+          - "rsync"
+          - "sudo"
+          - "vim"
+        state: present
+        update_cache: true
+  tags:
+    - packages
+    - pkgs
+
+- name: Setup server (configure the rest)
+  hosts: all
+  roles:
+    # - { role: ansible-sshd, tags: [hardening, sshd] }
+    # - { role: ansible-fail2ban, tags: [hardening, fail2ban] }
+    # - { role: ansible-unattended-upgrades, tags: [unattended-upgrades] }
+    # - { role: ansible-docker, tags: [docker] }
+    # - { role: ansible-ctop, tags: [docker, ctop] }
+    - { role: ansible-traefik, tags: [docker, traefik] }
