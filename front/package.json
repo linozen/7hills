@@ -4,10 +4,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
-    "@babel/core": "7.14.2",
     "@headlessui/react": "1.2.0",
     "@tailwindcss/typography": "0.4.0",
     "@types/react": "17.0.5",
@@ -41,13 +41,23 @@
     "webpack": "5.37.0"
   },
   "devDependencies": {
+    "@babel/core": "7.14.2",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "babel-jest": "^27.3.1",
     "eslint": "7.26.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-plugin-import": "2.23.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
-    "next-sitemap": "1.6.57"
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.3.1",
+    "next-router-mock": "^0.5.3",
+    "next-sitemap": "1.6.57",
+    "react-test-renderer": "^17.0.2"
   },
   "license": "MIT"
 }
