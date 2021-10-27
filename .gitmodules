@@ -1,0 +1,12 @@
+[submodule "server/roles/ansible-sshd"]
+	path = server/roles/ansible-sshd
+	url = git@github.com:linozen/ansible-sshd.git
+[submodule "server/roles/ansible-fail2ban"]
+	path = server/roles/ansible-fail2ban
+	url = git@github.com:linozen/ansible-fail2ban.git
+[submodule "server/roles/ansible-unattended-upgrades"]
+	path = server/roles/ansible-unattended-upgrades
+	url = git@github.com:linozen/ansible-unattended-upgrades.git
+[submodule "server/roles/ansible-docker"]
+	path = server/roles/ansible-docker
+	url = https://github.com/geerlingguy/ansible-role-docker.git
