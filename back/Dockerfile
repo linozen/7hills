@@ -1,28 +1,28 @@
-# base on buster-slim
-FROM node:14-buster-slim AS base
-WORKDIR /srv/app
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq
-
-# dependencies
-FROM base AS dependencies
-COPY ./package.json ./
-COPY ./yarn.lock ./
+FROM bitnami/node:14 as base
+WORKDIR /app
+COPY . .
 RUN yarn install
 
-# build
-FROM dependencies AS build
-COPY . .
-ENV NODE_ENV production
-ENV WEBSITE https://api.sevenhills-restaurant.de
-ENV DATABASE_FILENAME /home/node/app/data/data.db
+# Development
+FROM base as dev
+WORKDIR /app
+EXPOSE 3001
+CMD ["yarn", "develop"]
+
+# Building
+FROM base as build
+WORKDIR /app
+COPY --from=base /app .
 RUN yarn build --clean
 
-# production
-FROM build as release
-ENV WEBSITE https://api.sevenhills-restaurant.de
-COPY --chown=1000:1000 --from=build /srv/app /home/node/app
-USER node
-WORKDIR /home/node/app
+# Production
+FROM bitnami/node:14-prod as prod
+WORKDIR /app
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+USER appuser
+COPY --chown=appuser package.json .
+COPY --from=build --chown=appuser /app .
+ENV NODE_ENV=production
 EXPOSE 1337
 CMD ["yarn", "start"]
