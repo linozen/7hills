@@ -1,0 +1,34 @@
+---
+version: "3.7"
+
+services:
+  # ===========================================================================
+  # 7hills-back (http://localhost:1337)
+  # ===========================================================================
+  7hills-back:
+    image: 7hills-back:dev
+    container_name: 7hills-back
+    build:
+      context: back
+      target: dev
+    ports:
+      - "1337:1337"
+    environment:
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+    volumes:
+      - "./back:/app"
+      - "./db.sqlite:/db.sqlite"
+
+  # ===========================================================================
+  # 7hills-front (http://localhost:3000)
+  # ===========================================================================
+  7hills-front:
+    image: 7hills-front:dev
+    container_name: 7hills-front
+    build:
+      context: front
+      target: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./front:/app"
