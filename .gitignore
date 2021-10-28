@@ -1,2 +1,4 @@
 *.sqlite
 .env
+/server/github
+/server/*.pub
