@@ -1,32 +1,33 @@
-# base on buster-slim
-FROM node:16-buster-slim AS base
-WORKDIR /base
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq
+FROM bitnami/node:16 as base
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
+RUN npm install
 
-# dependencies
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+# Development
+FROM base as dev
+WORKDIR /app
+EXPOSE 3000
+CMD ["npm", "run", "dev"]
+
+# Building
+FROM base as build
+WORKDIR /app
 COPY . .
-
-# build
-FROM base AS build
-ENV STRAPI_API_URL=https://api.sevenhills-restaurant.de
-ENV NODE_ENV=production
-WORKDIR /build
-COPY --from=base /base ./
+COPY --from=base /app .
+RUN npm prune --production
 RUN npm run build
 
-# production
-FROM build AS production
-WORKDIR /home/node/app
+# Production
+FROM bitnami/node:16-prod as prod
+WORKDIR /app
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+USER appuser
+COPY --chown=appuser package.json .
+COPY --from=build --chown=appuser /app/public ./public
+COPY --from=build --chown=appuser /app/.next ./.next
+COPY --from=build --chown=appuser /app/node_modules ./node_modules
 ENV NODE_ENV=production
-COPY --from=build --chown=node:node /build/next.config.js ./
-COPY --from=build --chown=node:node /build/next-i18next.config.js ./
-COPY --from=build --chown=node:node /build/public ./public
-COPY --from=build --chown=node:node /build/.next ./.next
-COPY --from=build --chown=node:node /build/node_modules ./node_modules
-USER node
-RUN npx next telemetry disable
-EXPOSE 3001
-CMD ["node_modules/.bin/next", "start", "-p", "3001"]
+EXPOSE 3000
+CMD ["npm", "run", "start"]
