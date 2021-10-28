@@ -27,6 +27,7 @@ jobs:
           directory: ./server
           # Optional, SSH private key
           key: ${{secrets.SSH_PRIVATE_KEY}}
+
           # Optional, literal inventory file contents
           inventory: |
             [all]
