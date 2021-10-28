@@ -62,7 +62,7 @@ jobs:
       - name: Copy docker-compose.yml to server
         uses: appleboy/scp-action@master
         with:
-          host: h2952128.stratoserver.net
+          host: 49.12.74.139
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./docker-compose.yml"
@@ -71,18 +71,10 @@ jobs:
       - name:
         uses: appleboy/ssh-action@master
         with:
-          host: h2952128.stratoserver.net
+          host: 49.12.74.139
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            export CMS_ADMIN_PASSWORD="${{ secrets.CMS_ADMIN_PASSWORD }}"
-            export CMS_DB_PASSWORD="${{ secrets.CMS_DB_PASSWORD }}"
-            export CMS_KEY="${{ secrets.CMS_KEY }}"
-            export CMS_SECRET="${{ secrets.CMS_SECRET }}"
-            export EMAIL_PASS="${{ secrets.EMAIL_PASS }}"
-            export NOCODB_DB_PASSWORD="${{ secrets.NOCODB_DB_PASSWORD }}"
-            export NOCODB_TOKEN="${{ secrets.NOCODB_TOKEN }}"
-            export UMAMI_DB_PASSWORD="${{ secrets.UMAMI_DB_PASSWORD }}"
-            export UMAMI_HASH_SALT="${{ secrets.UMAMI_HASH_SALT }}"
+            export ADMIN_JWT_SECRET="${{ secrets.ADMIN_JWT_SECRET }}"
             docker-compose -f /srv/7hills/docker-compose.yml pull
             docker-compose -f /srv/7hills/docker-compose.yml up -d
