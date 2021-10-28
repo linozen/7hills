@@ -8,7 +8,6 @@
           - "borgbackup"
           - "borgmatic"
           - "curl"
-          - "dbus-user-session"
           - "git"
           - "rsync"
           - "sudo"
