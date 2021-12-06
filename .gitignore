@@ -4,3 +4,6 @@
 /server/*.pub
 **/node_modules/
 /.log/
+/back/data/
+/back/uploads/
+/back/.envrc
