@@ -2,7 +2,7 @@
 # ===========================================================================
 # fail2ban
 # ===========================================================================
-fail2ban_destemail: "admin@bvpk.org"
+fail2ban_destemail: "7hills@bsehn.dev"
 fail2ban_sender: root@{{ ansible_fqdn }}
 fail2ban_jail_configuration:
   - option: enabled
@@ -16,23 +16,17 @@ fail2ban_jail_configuration:
 # unattended-upgrades
 # ===========================================================================
 unattended_origins_patterns:
-  - "origin=Ubuntu,archive=${distro_codename}-security"
-  - "o=Ubuntu,a=${distro_codename}"
-  - "o=Ubuntu,a=${distro_codename}-updates"
+  # updates
+  - "origin=Debian,codename=${distro_codename},label=Debian"
+  # backwards compatibility
+  - "origin=Debian,codename=${distro_codename},label=Debian-Security"
+  # pattern for security releases, starting with bullseye
+  - "origin=Debian,codename=${distro_codename}-security,label=Debian-Security"
 unattended_remove_unused_dependencies: true
-unattended_mail: "admin@bvpk.org"
+unattended_mail: "7hills@sehn.dev"
 unattended_mail_only_on_error: true
 
 # ===========================================================================
 # docker(-compose)
 # ===========================================================================
 docker_compose_version: "1.29.2"
-
-# ===========================================================================
-# traefik
-# ===========================================================================
-traefik_image: traefik:2.5
-traefik_dir: /srv/traefik
-traefik_loglevel: WARN
-tls_min_version: VersionTLS12
-acme_email: "admin@bvpk.org"
