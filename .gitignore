@@ -2,3 +2,5 @@
 .env
 /server/github
 /server/*.pub
+**/node_modules/
+/.log/
