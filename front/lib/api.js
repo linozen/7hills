@@ -1,8 +1,10 @@
+import { CMS_URL } from "./constants.js";
+
 async function fetchAPI(query, { variables } = {}) {
-  const res = await fetch(`${process.env.STRAPI_API_URL}/graphql`, {
-    method: 'POST',
+  const res = await fetch(`${CMS_URL}/graphql`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       query,
@@ -13,7 +15,7 @@ async function fetchAPI(query, { variables } = {}) {
   const json = await res.json();
   if (json.errors) {
     console.error(json.errors);
-    throw new Error('Failed to fetch API');
+    throw new Error("Failed to fetch API");
   }
 
   return json.data;
@@ -220,7 +222,7 @@ export async function getAllPostsForSoul() {
         }
       }
     }
-  `)
+  `);
   return data?.posts;
 }
 
@@ -269,7 +271,7 @@ export async function getPostAndMorePosts(slug) {
           slug_ne: slug,
         },
       },
-    },
+    }
   );
   return data;
 }
