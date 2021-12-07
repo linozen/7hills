@@ -95,14 +95,14 @@ export async function getStaticProps({ locale, params }) {
   const data = await getPostAndMorePosts(params.slug);
 
   // get URL of backend from env
-  const apiUrl = process.env.STRAPI_API_URL
+  const cmsURL = process.env.CMS_URL
 
   // single post data (translated)
   const title = locale === 'en' ? data?.posts[0]?.title_en || '' : data?.posts[0]?.title_de || '';
   const content = locale === 'en' ? data?.posts[0]?.content_en || '' : data?.posts[0]?.content_de || '';
   const slug = data?.posts[0]?.slug
-  const coverImageUrl = apiUrl + data?.posts[0]?.coverImage?.url
-  const videoUrl = data?.posts[0].video.url === "no_video" ? null : apiUrl + data.posts[0].video.url
+  const coverImageUrl = cmsURL + data?.posts[0]?.coverImage?.url
+  const videoUrl = data?.posts[0].video.url === "no_video" ? null : cmsURL + data.posts[0].video.url
 
   const date = data?.posts[0]?.date
 
@@ -121,7 +121,7 @@ export async function getStaticProps({ locale, params }) {
         excerpt: obj.excerpt_en,
         date: obj.date,
         slug: obj.slug,
-        coverImageUrl: apiUrl + obj.coverImage.url
+        coverImageUrl: cmsURL + obj.coverImage.url
       }
     }) :
     morePostDataTrans.map(function(obj) {
@@ -131,13 +131,13 @@ export async function getStaticProps({ locale, params }) {
         excerpt: obj.excerpt_de,
         date: obj.date,
         slug: obj.slug,
-        coverImageUrl: apiUrl + obj.coverImage.url
+        coverImageUrl: cmsURL + obj.coverImage.url
       }
     })
 
   return {
     props: {
-      apiUrl,
+      cmsURL,
       post: {
         slug,
         title,

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown'
 
-export default function ImageBlock({ props, apiUrl }) {
+export default function ImageBlock({ props, cmsURL }) {
     const curLocale = useRouter().locale;
     const title = curLocale === "en" ? props.title_en : props.title_de;
     const location = curLocale === "en" ? props.location_en : props.location_de;
@@ -40,7 +40,7 @@ export default function ImageBlock({ props, apiUrl }) {
                                 <img
                                     className="h-72 md:h-80 lg:h-96 w-full object-cover object-center transition duration-1000 transform  hover:scale-110"
                                     alt="producer-image"
-                                    src={apiUrl + props.coverImage.url} loading="lazy"
+                                    src={cmsURL + props.coverImage.url} loading="lazy"
                                 />
                             </div>
                         </a>

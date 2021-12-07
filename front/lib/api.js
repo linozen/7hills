@@ -1,4 +1,5 @@
-import { CMS_URL } from "./constants.js";
+const CMS_URL = process.env.CMS_URL || "http://api.sevenhills-restaurant.de";
+export { CMS_URL };
 
 async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${CMS_URL}/graphql`, {
@@ -30,6 +31,12 @@ export async function getIndex() {
           metaDescription_de
           keywords_en
           keywords_de
+          }
+        slider {
+          url
+          width
+          height
+          alternativeText
           }
         }
       }
