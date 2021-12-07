@@ -4,41 +4,49 @@ import { useTranslation } from "next-i18next";
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import BackToTop from "../components/back-to-top";
-import FsLightbox from "fslightbox-react";
-import { useState } from "react";
-import Gallery from "react-photo-gallery";
 import Button from "../components/button";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import ButtonScroll from "../components/button-scroll";
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
+import Image from "next/image";
+import Masonry from "react-masonry-css";
+import { SRLWrapper } from "simple-react-lightbox";
 
 export default function Events(props) {
   const { t } = useTranslation("common");
 
-  // if toggler is updated when lightbox is closed it will open it
-  // if toggler is updated when lightbox is opened it will close it
-  const [lightboxController, setLightboxController] = useState({
-    toggler: false,
-    source: ""
+  const photos = props.photos.map(function (item, index) {
+    return (
+      <div key={index} className="pb-2">
+        <Image
+          className="cursor-pointer"
+          src={item.src}
+          width={item.width}
+          height={item.height}
+        />
+      </div>
+    );
   });
 
-  function openLightboxOnSource(source) {
-    setLightboxController({
-      toggler: !lightboxController.toggler,
-      source: source
-    });
-  }
+  const masonryBreakpoints = {
+    default: 4,
+    1120: 3,
+    796: 2,
+    640: 1,
+  };
 
   return (
     <>
       <NextSeo
         title={props.title}
-        titleTemplate='%s | Seven Hills Restaurant'
+        titleTemplate="%s | Seven Hills Restaurant"
         description={props.description}
-        additionalMetaTags={[{
-          name: 'keywords',
-          content: props.keywords
-        }]}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: props.keywords,
+          },
+        ]}
         openGraph={{
           description: props.description,
           images: [
@@ -53,7 +61,6 @@ export default function Events(props) {
       <Layout>
         {/* Content starts here */}
         <div className="flex flex-col h-screen">
-
           {/* NavBar and BackToTop */}
           <div className="w-full flex-initial">
             <NavBar />
@@ -71,7 +78,11 @@ export default function Events(props) {
                 </div>
                 <ButtonScroll link="content" />
               </div>
-              <img className="object-cover h-full w-full" alt="events" src="/events_04.jpg" />
+              <img
+                className="object-cover h-full w-full"
+                alt="events"
+                src="/events_04.jpg"
+              />
             </div>
           </div>
         </div>
@@ -79,13 +90,8 @@ export default function Events(props) {
         {/* Markdown Content */}
         <div id="content" className="w-full bg-blue-dark pt-12">
           <div className="prose prose-lg md:prose-xl text-gold-500 px-5 mx-auto">
-            <ReactMarkdown>
-              {props.content}
-            </ReactMarkdown>
-            <Button
-              title={t("DOWNLOAD PDF")}
-              link={props.pdfUrl}
-            />
+            <ReactMarkdown>{props.content}</ReactMarkdown>
+            <Button title={t("DOWNLOAD PDF")} link={props.pdfUrl} />
           </div>
         </div>
 
@@ -94,19 +100,17 @@ export default function Events(props) {
           <h2 className="mx-5 uppercase bg-blue-dark pt-20 pb-4 text-gold-500 text-3xl md:text-4xl">
             {t("What's expecting you")}
           </h2>
-          <div className="mx-4">
-            <Gallery
-              direction="row"
-              margin={5}
-              photos={props.photos}
-              limitNodeSearch={3}
-              onClick={(event) => openLightboxOnSource(event.target.src)} />
+          <div>
+            <SRLWrapper>
+              <Masonry
+                breakpointCols={masonryBreakpoints}
+                className="px-5 my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
+                {photos}
+              </Masonry>
+            </SRLWrapper>
           </div>
-          <FsLightbox
-            toggler={lightboxController.toggler}
-            source={lightboxController.source}
-            sources={props.sources}
-          />
         </div>
       </Layout>
     </>
@@ -114,29 +118,32 @@ export default function Events(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const baseUrl = process.env.STRAPI_API_URL;
+  const cmsURL = process.env.CMS_URL;
   const data = await getEvent();
 
-  const description = locale === 'en' ?
-    data.event.SEO.metaDescription_en :
-    data.event.SEO.metaDescription_de
+  const description =
+    locale === "en"
+      ? data.event.SEO.metaDescription_en
+      : data.event.SEO.metaDescription_de;
 
-  const keywords = locale === 'en' ?
-    data.event.SEO.keywords_en :
-    data.event.SEO.keywords_de
+  const keywords =
+    locale === "en" ? data.event.SEO.keywords_en : data.event.SEO.keywords_de;
 
-  const sources = data.event.galleryImages.map((item) => baseUrl + item.url);
-  const photos = data.event.galleryImages.map(item => {
+  const photos = data.event.galleryImages.map((item) => {
     return {
-      src: baseUrl + item.url,
+      src: cmsURL + item.url,
       width: item.width,
-      height: item.height
-    }
-  })
+      height: item.height,
+    };
+  });
   const title = locale === "en" ? data.event.title_en : data.event.title_de;
-  const content = locale === "en" ? data.event.content_en : data.event.content_de;
-  const pdfUrl = locale === "en" ? baseUrl + data.event.pdf_en.url : baseUrl + data.event.pdf_de.url;
-  const shareImage = data.event.SEO.ShareImage
+  const content =
+    locale === "en" ? data.event.content_en : data.event.content_de;
+  const pdfUrl =
+    locale === "en"
+      ? cmsURL + data.event.pdf_en.url
+      : cmsURL + data.event.pdf_de.url;
+  const shareImage = data.event.SEO.ShareImage;
 
   return {
     props: {
@@ -146,9 +153,9 @@ export async function getStaticProps({ locale }) {
       shareImage,
       content,
       pdfUrl,
-      sources,
       photos,
       ...(await serverSideTranslations(locale, ["common"])),
     },
+    revalidate: 300,
   };
 }
