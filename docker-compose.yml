@@ -16,22 +16,7 @@ services:
     volumes:
       - ./data:/home/node/app/data
       - ./uploads:/home/node/app/public/uploads
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.strapi.rule=Host(`api.sevenhills-restaurant.de`)"
-      - "traefik.http.routers.strapi.entrypoints=https"
-      - "traefik.http.routers.strapi.tls=true"
-      - "traefik.http.routers.strapi.tls.certresolver=letsencrypt"
-      - "traefik.http.middlewares.strapi-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.strapi-http.entrypoints=http"
-      - "traefik.http.routers.strapi-http.rule=Host(`api.sevenhills-restaurant.de`)"
-      - "traefik.http.routers.strapi-http.middlewares=strapi-https@docker"
-      - "traefik.http.routers.strapi.middlewares=secHeaders@file"
-      - "traefik.http.services.strapi.loadbalancer.server.port=1337"
 
-  # ===========================================================================
-  # 7hills-front (https://www.sevenhills-restaurant.de)
-  # ===========================================================================
   7hills-front:
     image: 7hills-front:main
     container_name: 7hills-front
@@ -40,35 +25,6 @@ services:
       - web
     expose:
       - "3000"
-    labels:
-      # global redirect to https
-      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
-      - "traefik.http.routers.http-catchall.entrypoints=http"
-      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
-
-      # middleware redirect
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
-
-      # middleware redirect to www
-      - "traefik.http.middlewares.redirect-to-www.redirectregex.regex=(https|http)://(?:www.)?(.*)"
-      - "traefik.http.middlewares.redirect-to-www.redirectregex.replacement=https://www.$${2}"
-      - "traefik.http.middlewares.redirect-to-www.redirectregex.permanent=true"
-
-      # middleware redirect to non-www
-      - "traefik.http.middlewares.redirect-to-nonwww.redirectregex.regex=(https|http)://(www\\.(.*))"
-      - "traefik.http.middlewares.redirect-to-nonwww.redirectregex.replacement=https://$${3}"
-      - "traefik.http.middlewares.redirect-to-nonwww.redirectregex.permanent=true"
-
-      # next traefik setup
-      - "traefik.enable=true"
-      - "traefik.http.services.bvpk-front.loadbalancer.server.port=3001"
-      - "traefik.http.routers.bvpk-front.rule=Host(`sevenhills-restaurant.de`,`www.sevenhills-restaurant.de`)"
-      - "traefik.http.routers.bvpk-front.entrypoints=https"
-      - "traefik.http.routers.bvpk-front.tls=true"
-      - "traefik.http.routers.bvpk-front.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.bvpk-front.service=next"
-      - "traefik.http.routers.bvpk-front.middlewares=redirect-to-www"
 
 networks:
   web:
