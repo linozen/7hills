@@ -27,6 +27,38 @@
 .shimmer {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300;
 }
+.my-masonry-grid {
+  display: flex;
+  margin-left: -20px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 20px; /* gutter size */
+  background-clip: padding-box;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background: #000;
+}
+
+.swiper-pagination-bullet {
+  background: #dec580 !important;
+  opacity: 0.8 !important;
+}
+
+.swiper-pagination-bullet-active-main {
+  opacity: 1 !important;
+}
+
+.swiper .swiper-button-prev,
+.swiper-button-next {
+  color: #dec580 !important;
+}
 
 /* nuka-carousel ui fixes */
 .slider-slide,

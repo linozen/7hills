@@ -1,17 +1,55 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { getIndex } from "../lib/api";
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 import Button from "../components/button";
 import ButtonReservation from "../components/button-reservation";
-import Carousel from "nuka-carousel";
 import { NextSeo } from "next-seo";
+import { CMS_URL } from "../lib/api";
+import SwiperCore, {
+  Autoplay,
+  EffectFade,
+  Navigation,
+  Pagination,
+} from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+SwiperCore.use([Autoplay, EffectFade, Navigation, Pagination]);
 
 export default function Index(props) {
   const { t } = useTranslation("common");
+  const swiperSlides = props.slider.map(function (item, index) {
+    return (
+      <SwiperSlide>
+        <div>
+          {index % 2 == 0 ? (
+            <div className="absolute z-10 h-full w-full flex justify-center items-center pt-48">
+              <ButtonReservation title={t("BOOK TABLE")} />
+            </div>
+          ) : (
+            <div className="absolute z-10 h-full w-full flex justify-center items-center pt-48">
+              <Button title={t("BOOK EVENTS")} link="events" />
+            </div>
+          )}
+          <Image
+            className="object-cover"
+            src={`${CMS_URL}${item.url}`}
+            alt={item.alternativeText}
+            layout="fill"
+            priority={index == 0 ? true : false}
+          />
+        </div>
+      </SwiperSlide>
+    );
+  });
+
   return (
     <>
       <NextSeo
@@ -33,51 +71,23 @@ export default function Index(props) {
           </div>
           {/* Autoplay slider */}
           <div className="border-t border-b border-gold-500 w-full h-full flex-1 overflow-hidden bg-olive-500">
-            <Carousel
-              autoplay={true}
-              autoplayInterval={6000}
-              speed={1200}
-              pauseOnHover={true}
-              renderBottomCenterControls={({}) => null}
-              defaultControlsConfig={{
-                nextButtonText: ">",
-                prevButtonText: "<",
-                nextButtonClassName: "slider-control",
-                prevButtonClassName: "slider-control",
+            <Swiper
+              navigation={true}
+              pagination={{
+                dynamicBullets: true,
               }}
-              // easing="easeCubicInOut"
-              transitionMode="fade"
-              wrapAround={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: true,
+              }}
+              loop={true}
+              effect={"fade"}
+              lazy={{
+                loadPrevNext: true,
+              }}
             >
-              {/* Image slide with button on medium and small viewports */}
-              <div className="relative w-full h-full overflow-hidden">
-                <div className="absolute h-full w-full flex justify-center items-center pt-48">
-                  <ButtonReservation title={t("BOOK TABLE")} />
-                </div>
-                {/* <div className="absolute h-full w-full flex justify-center items-center pt-48"> */}
-                {/*   <Button title={t("SEE MENU")} link="/seasonal" /> */}
-                {/* </div> */}
-                <img
-                  className="object-cover h-full w-full"
-                  alt="forest"
-                  src="/small_forest.jpg"
-                  srcSet="medium_forest.jpg 800w, large_forest.jpg 1920w"
-                />
-              </div>
-
-              {/* Image slide with button on medium and small viewports */}
-              <div className="relative w-full h-full overflow-hidden">
-                <div className="absolute h-full w-full flex justify-center items-center pt-48">
-                  <Button title={t("BOOK EVENT")} link="/events" />
-                </div>
-                <img
-                  className="object-cover h-full w-full"
-                  alt="forest"
-                  src="/small_events_13.jpg"
-                  srcSet="medium_events_13.jpg 800w, large_events_13.jpg 1920w"
-                />
-              </div>
-            </Carousel>
+              {swiperSlides}
+            </Swiper>
           </div>
         </div>
       </Layout>
@@ -96,11 +106,14 @@ export async function getStaticProps({ locale }) {
   const keywords =
     locale === "en" ? data.index.SEO.keywords_en : data.index.SEO.keywords_de;
 
+  const slider = data.index.slider;
   return {
     props: {
       description,
       keywords,
+      slider,
       ...(await serverSideTranslations(locale, ["common"])),
     },
+    revalidate: 120,
   };
 }
