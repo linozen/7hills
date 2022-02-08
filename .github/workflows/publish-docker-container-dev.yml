@@ -1,12 +1,12 @@
 ---
-name: prod > Publish Docker container
+name: dev > Publish Docker container
 
 on:
   schedule:
     - cron: "15 4 * * *"
   push:
     branches:
-      - prod
+      - dev
 
 env:
   REGISTRY: ghcr.io
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: "prod"
+          ref: "dev"
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
