@@ -8,10 +8,12 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* <script */}
-          {/*   async defer */}
-          {/*   data-website-id="a2e2d500-a5e2-4a24-8389-46d15f8411be" */}
-          {/*   src="https://umami.sehn.dev/umami.js"></script> */}
+          <script
+            async
+            defer
+            data-website-id="c53a4784-1f3e-42de-975a-4cb3e64655c4"
+            src="https://umami.sevenhills-restaurant.de/umami.js"
+          ></script>
         </body>
       </Html>
     );
