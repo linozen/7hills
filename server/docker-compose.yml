@@ -101,16 +101,16 @@ services:
   # ===========================================================================
   # Frontend [https://sevenhills-restaurant.de]
   # ===========================================================================
-  # front:
-  #   image: ghcr.io/linozen/7hills:prod
-  #   container_name: front
-  #   restart: always
-  #   networks:
-  #     - web
-  #   environment:
-  #     - CMS_URL="https://api.sevenhills-restaurant.de"
-  #   expose:
-  #     - "3001"
+  front:
+    image: ghcr.io/linozen/7hills:prod
+    container_name: front
+    restart: always
+    networks:
+      - web
+    environment:
+      - CMS_URL="https://api.sevenhills-restaurant.de"
+    expose:
+      - "3001"
 
 networks:
   cms:
