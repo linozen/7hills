@@ -7,7 +7,7 @@ RUN npm install
 # Development
 FROM base as dev
 WORKDIR /app
-EXPOSE 3000
+EXPOSE 3001
 CMD ["npm", "run", "dev"]
 
 # Building
@@ -15,6 +15,7 @@ FROM base as build
 WORKDIR /app
 COPY . .
 COPY --from=base /app .
+ENV CMS_URL=https://api.sevehills-restaurant.de
 RUN npm run build
 RUN npm prune --production
 
