@@ -8,6 +8,8 @@
           - "borgbackup"
           - "borgmatic"
           - "curl"
+          - "docker.io"
+          - "docker-compose"
           - "git"
           - "rsync"
           - "sudo"
@@ -21,13 +23,11 @@
 - name: Setup server (configure the rest)
   hosts: all
   roles:
-    - role: ansible-sshd
-      tags: [hardening, sshd]
+    - role: ansible-openssh
+      tags: [hardening, openssh, ssh]
     - role: ansible-fail2ban
       tags: [hardening, fail2ban]
     - role: ansible-unattended-upgrades
       tags: [unattended-upgrades]
-    - role: ansible-docker
-      tags: [docker]
     - role: ansible-ctop
       tags: [docker, ctop]
