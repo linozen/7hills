@@ -15,7 +15,7 @@ FROM base as build
 WORKDIR /app
 COPY . .
 COPY --from=base /app .
-ENV CMS_URL=https://api.sevehills-restaurant.de
+ENV CMS_URL=https://api.sevenhills-restaurant.de
 RUN npm run build
 RUN npm prune --production
 
