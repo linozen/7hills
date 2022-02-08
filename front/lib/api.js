@@ -1,6 +1,6 @@
 import { Directus } from "@directus/sdk";
 
-const CMS_URL = process.env.CMS_URL || "http://localhost:8055";
+const CMS_URL = process.env.CMS_URL || "https://api.sevenhills-restaurant.de";
 export { CMS_URL };
 
 const cms = new Directus(CMS_URL);
