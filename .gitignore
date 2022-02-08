@@ -1,10 +1,3 @@
-*.sqlite
 .env
-/server/github
-/server/*.pub
-**/node_modules/
+cms/
 /.log/
-/back/data/
-/back/uploads/
-/back/.envrc
-**/.envrc
