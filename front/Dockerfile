@@ -29,7 +29,7 @@ COPY --chown=appuser package.json .
 COPY --from=build --chown=appuser /app/public ./public
 COPY --from=build --chown=appuser /app/.next ./.next
 COPY --from=build --chown=appuser /app/node_modules ./node_modules
-COPY --from=build --chown=appuser /app/next-i18.config.js ./next-i18.config.js
+COPY --from=build --chown=appuser /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=build --chown=appuser /app/next-seo.config.js ./next-seo.config.js
 COPY --from=build --chown=appuser /app/next-sitemap.js ./next-sitemap.js
 ENV NODE_ENV=production
