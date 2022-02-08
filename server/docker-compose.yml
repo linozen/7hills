@@ -1,0 +1,119 @@
+---
+version: "3"
+
+services:
+  # ===========================================================================
+  # Reverse proxy based on Caddy
+  # ===========================================================================
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+    networks:
+      - web
+
+  # ===========================================================================
+  # 7hills-back [https://api.sevenhills-restaurant.de]
+  # ===========================================================================
+  cms-cache:
+    container_name: cms-cache
+    image: redis:6
+    networks:
+      - cms
+
+  cms:
+    container_name: cms
+    image: directus/directus:9
+    ports:
+      - 8055:8055
+    volumes:
+      # By default, uploads are stored in /directus/uploads
+      # Always make sure your volumes matches the storage root when using
+      # local driver
+      - ./cms/uploads:/directus/uploads
+      # Make sure to also mount the volume when using SQLite
+      - ./cms/database:/directus/database
+    networks:
+      - web
+      - cms
+    depends_on:
+      - cms-cache
+    environment:
+      KEY: "255d861b-5ea1-5996-9aa3-922530ec40b1"
+      SECRET: "${CMS_SECRET:?err}"
+
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/cms.sqlite"
+
+      CACHE_ENABLED: "true"
+      CACHE_STORE: "redis"
+      CACHE_REDIS: "redis://cms-cache:6379"
+      CACHE_AUTO_PURGE: "true"
+      CACHE_TTL: "1m"
+
+      ADMIN_EMAIL: "admin@sehn.dev"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:?err}"
+
+  # ===========================================================================
+  # Website Analytics [https://umami.sevenhills-restaurant.de]
+  # ===========================================================================
+  umami-db:
+    image: postgres:13
+    container_name: umami-db
+    environment:
+      POSTGRES_DB: "umami"
+      POSTGRES_USER: "umami"
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD}
+    expose:
+      - "5432"
+    networks:
+      - umami
+    volumes:
+      - ./analytics/schema.postgresql.sql:/docker-entrypoint-initdb.d/schema.postgresql.sql:ro
+      - ./analytics/db:/var/lib/postgresql/data
+    restart: always
+
+  umami:
+    image: ghcr.io/mikecao/umami:postgresql-latest
+    container_name: umami
+    expose:
+      - "3000"
+    environment:
+      DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD}@umami-db:5432/umami
+      DATABASE_TYPE: postgresql
+      HASH_SALT: ${UMAMI_HASH_SALT}
+    networks:
+      - umami
+      - web
+    depends_on:
+      - umami-db
+    restart: always
+
+  # ===========================================================================
+  # Frontend [https://sevenhills-restaurant.de]
+  # ===========================================================================
+  front:
+    image: ghcr.io/linozen/7hills:prod
+    container_name: front
+    restart: always
+    networks:
+      - web
+    environment:
+      - CMS_URL="https://api.sevenhills-restaurant.de"
+    expose:
+      - "3001"
+
+networks:
+  cms:
+    external: false
+  umami:
+    external: false
+  web:
+    external: true

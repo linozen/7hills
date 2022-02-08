@@ -1,0 +1,23 @@
+{
+  email 7hills@sehn.dev
+  # Optional staging lets encrypt for testing. Comment out for production.
+  acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# CMS
+api.sevenhills-restaurant.de {
+  reverse_proxy cms:8055
+}
+
+# Analytics
+umami.sevenhills-restaurant.de {
+    reverse_proxy umami:3000
+}
+
+# Frontend
+sevenhills-restaurant.de {
+    reverse_proxy front:3001
+}
+www.sevenhills-restaurant.de {
+    redir https://sevenhills-restaurant.de{uri}
+}

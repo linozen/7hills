@@ -5,6 +5,7 @@
     - name: Install essential packages
       apt:
         pkg:
+          - "apparmor"
           - "borgbackup"
           - "borgmatic"
           - "curl"
@@ -16,6 +17,24 @@
           - "vim"
         state: present
         update_cache: true
+
+    - name: Put Caddyfile in place
+      tags: deploy
+      synchronize:
+        src: Caddyfile
+        dest: /root/caddy/Caddyfile
+
+    - name: Create the web network
+      tags: deploy
+      docker_network:
+        name: web
+
+    - name: Copy docker-compose in place
+      tags: deploy
+      synchronize:
+        src: docker-compose.yml
+        dest: /root/docker-compose.yml
+
   tags:
     - packages
     - pkgs

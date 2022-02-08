@@ -1,9 +1,9 @@
 ---
-version: "3.7"
+version: "3"
 
 services:
   # ===========================================================================
-  # 7hills-cms (http://localhost:8055)
+  # 7hills-cms [http://localhost:8055]
   # ===========================================================================
   cms-cache:
     container_name: 7hills-cms-cache
@@ -44,7 +44,7 @@ services:
       ADMIN_PASSWORD: "${ADMIN_PASSWORD:?err}"
 
   # ===========================================================================
-  # 7hills-front (http://localhost:3000)
+  # 7hills-front [http://localhost:3000]
   # ===========================================================================
   7hills-front:
     image: 7hills-front:dev
