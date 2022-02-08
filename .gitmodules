@@ -1,0 +1,6 @@
+[submodule "server/roles/ansible-unattended-upgrades"]
+	path = server/roles/ansible-unattended-upgrades
+	url = https://github.com/jnv/ansible-role-unattended-upgrades.git
+[submodule "server/roles/ansible-openssh"]
+	path = server/roles/ansible-openssh
+	url = https://github.com/robertdebock/ansible-role-openssh.git
