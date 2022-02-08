@@ -33,5 +33,5 @@ COPY --from=build --chown=appuser /app/next-i18next.config.js ./next-i18next.con
 COPY --from=build --chown=appuser /app/next-seo.config.js ./next-seo.config.js
 COPY --from=build --chown=appuser /app/next-sitemap.js ./next-sitemap.js
 ENV NODE_ENV=production
-EXPOSE 3000
+EXPOSE 3001
 CMD ["npm", "run", "start"]
