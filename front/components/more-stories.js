@@ -1,4 +1,4 @@
-import PostPreview from './post-preview'
+import PostPreview from "./post-preview";
 import { useTranslation } from "next-i18next";
 
 export default function MoreStories({ posts }) {
@@ -24,5 +24,5 @@ export default function MoreStories({ posts }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

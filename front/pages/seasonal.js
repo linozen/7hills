@@ -1,11 +1,17 @@
-/* eslint-disable react/react-in-jsx-scope */
+// Translations
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { getSeasonal } from "../lib/api";
+
+// API
+import { CMS_URL, fetchItems } from "../lib/api";
+
+// SEO
+import { NextSeo } from "next-seo";
+
+// Components
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import Menu from "../components/menu";
 import BackToTop from "../components/back-to-top";
-import { NextSeo } from "next-seo";
 
 export default function Seasonal(props) {
   return (
@@ -14,12 +20,6 @@ export default function Seasonal(props) {
         title={props.title}
         titleTemplate="%s | Seven Hills Restaurant"
         description={props.description}
-        additionalMetaTags={[
-          {
-            name: "keywords",
-            content: props.keywords,
-          },
-        ]}
         openGraph={{
           description: props.description,
         }}
@@ -34,30 +34,30 @@ export default function Seasonal(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const data = await getSeasonal();
-  const title =
-    locale === "en" ? data.seasonal.title_en : data.seasonal.title_de;
+  // Get data from CMS
+  const seasonal = await fetchItems("Seasonal");
+  const seasonalTrans = await fetchItems("Seasonal_translations");
 
+  // Get page texts by locale
+  const seasonalDe = seasonalTrans.filter((item) => {
+    return item.languages_code === "de-DE";
+  });
+  const seasonalEn = seasonalTrans.filter((item) => {
+    return item.languages_code === "en-US";
+  });
+  const title = locale === "en" ? seasonalEn[0].title : seasonalDe[0].title;
   const content =
-    locale === "en" ? data.seasonal.content_en : data.seasonal.content_de;
+    locale === "en" ? seasonalEn[0].content : seasonalDe[0].content;
   const description =
-    locale === "en"
-      ? data.seasonal.SEO.metaDescription_en
-      : data.seasonal.SEO.metaDescription_de;
-
-  const keywords =
-    locale === "en"
-      ? data.seasonal.SEO.keywords_en
-      : data.seasonal.SEO.keywords_de;
+    locale === "en" ? seasonalEn[0].description : seasonalDe[0].description;
 
   return {
     props: {
       title,
       description,
-      keywords,
       content,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 120,
+    revalidate: 60,
   };
 }

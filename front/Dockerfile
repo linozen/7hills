@@ -15,8 +15,8 @@ FROM base as build
 WORKDIR /app
 COPY . .
 COPY --from=base /app .
-RUN npm prune --production
 RUN npm run build
+RUN npm prune --production
 
 # Production
 FROM bitnami/node:16-prod as prod

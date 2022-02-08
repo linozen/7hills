@@ -1,24 +1,31 @@
-import { getEvent } from "../lib/api";
+// Translations
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import NavBar from "../components/navbar";
-import Layout from "../components/layout";
+
+// API
+import { CMS_URL, fetchItems } from "../lib/api";
+
+// SEO
+import { NextSeo } from "next-seo";
+
+// Components
 import BackToTop from "../components/back-to-top";
 import Button from "../components/button";
-import ReactMarkdown from "react-markdown";
 import ButtonScroll from "../components/button-scroll";
-import { NextSeo } from "next-seo";
 import Image from "next/image";
+import Layout from "../components/layout";
 import Masonry from "react-masonry-css";
+import NavBar from "../components/navbar";
+import ReactMarkdown from "react-markdown";
 import { SRLWrapper } from "simple-react-lightbox";
 
 export default function Events(props) {
   const { t } = useTranslation("common");
 
-  const photos = props.photos.map(function (item, index) {
+  const photos = props.gallery.map(function (item, index) {
     return (
-      <div key={index} className="pb-2">
-        <Image
+      <div key={index} className="pb-4">
+        <img
           className="cursor-pointer"
           src={item.src}
           width={item.width}
@@ -41,20 +48,8 @@ export default function Events(props) {
         title={props.title}
         titleTemplate="%s | Seven Hills Restaurant"
         description={props.description}
-        additionalMetaTags={[
-          {
-            name: "keywords",
-            content: props.keywords,
-          },
-        ]}
         openGraph={{
           description: props.description,
-          images: [
-            {
-              url: props.shareImage.media.url,
-              alt: props.shareImage.alt,
-            },
-          ],
         }}
       />
 
@@ -96,12 +91,12 @@ export default function Events(props) {
         </div>
 
         {/* Masonry Gallery  */}
-        <div className="bg-blue-dark">
-          <h2 className="mx-5 uppercase bg-blue-dark pt-20 pb-4 text-gold-500 text-3xl md:text-4xl">
-            {t("What's expecting you")}
-          </h2>
-          <div>
-            <SRLWrapper>
+        <SRLWrapper elements={photos}>
+          <div className="bg-blue-dark">
+            <h2 className="mx-5 uppercase bg-blue-dark pt-20 pb-4 text-gold-500 text-3xl md:text-4xl">
+              {t("What's expecting you")}
+            </h2>
+            <div>
               <Masonry
                 breakpointCols={masonryBreakpoints}
                 className="px-5 my-masonry-grid"
@@ -109,53 +104,64 @@ export default function Events(props) {
               >
                 {photos}
               </Masonry>
-            </SRLWrapper>
+            </div>
           </div>
-        </div>
+        </SRLWrapper>
       </Layout>
     </>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  const cmsURL = process.env.CMS_URL;
-  const data = await getEvent();
+  // Get data from CMS
+  const events = await fetchItems("Events");
+  const eventsTrans = await fetchItems("Events_translations");
+  const eventsFiles = await fetchItems("Events_files");
+  const allFiles = await fetchItems("directus_files");
 
-  const description =
-    locale === "en"
-      ? data.event.SEO.metaDescription_en
-      : data.event.SEO.metaDescription_de;
-
-  const keywords =
-    locale === "en" ? data.event.SEO.keywords_en : data.event.SEO.keywords_de;
-
-  const photos = data.event.galleryImages.map((item) => {
-    return {
-      src: cmsURL + item.url,
-      width: item.width,
-      height: item.height,
-    };
+  // Get page texts by locale
+  const eventsDe = eventsTrans.filter((item) => {
+    return item.languages_code === "de-DE";
   });
-  const title = locale === "en" ? data.event.title_en : data.event.title_de;
-  const content =
-    locale === "en" ? data.event.content_en : data.event.content_de;
+  const eventsEn = eventsTrans.filter((item) => {
+    return item.languages_code === "en-US";
+  });
+  const title = locale === "en" ? eventsEn[0].title : eventsDe[0].title;
+  const content = locale === "en" ? eventsEn[0].content : eventsDe[0].content;
+  const description =
+    locale === "en" ? eventsEn[0].description : eventsDe[0].description;
   const pdfUrl =
     locale === "en"
-      ? cmsURL + data.event.pdf_en.url
-      : cmsURL + data.event.pdf_de.url;
-  const shareImage = data.event.SEO.ShareImage;
+      ? `${CMS_URL}/assets/${eventsEn[0].pdf}`
+      : `${CMS_URL}/assets/${eventsDe[0].pdf}`;
+
+  const galleryUnfiltered = eventsFiles.map((value, index) => {
+    let width = allFiles
+      .filter((item) => item.id === value.directus_files_id)
+      .map((item) => item.width);
+    let height = allFiles
+      .filter((item) => item.id === value.directus_files_id)
+      .map((item) => item.height);
+    return {
+      src: `${CMS_URL}/assets/${value.directus_files_id}`,
+      width: width[0],
+      height: height[0],
+    };
+  });
+
+  const gallery = galleryUnfiltered.filter((item) => {
+    return item.src !== `${CMS_URL}/assets/null`;
+  });
 
   return {
     props: {
       title,
-      description,
-      keywords,
-      shareImage,
       content,
+      description,
       pdfUrl,
-      photos,
+      gallery,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 300,
+    revalidate: 60,
   };
 }

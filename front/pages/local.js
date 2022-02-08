@@ -1,27 +1,28 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { getLocal, getProducers } from "../lib/api";
+// Translations
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+// API
+import { CMS_URL, fetchItems } from "../lib/api";
+
+// SEO
+import { NextSeo } from "next-seo";
+
+// Components
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import ImageBlock from "../components/image-block";
-import BackToTop from "@/components/back-to-top";
+import BackToTop from "../components/back-to-top";
+
+// Packages
 import ReactMarkdown from "react-markdown";
-import { NextSeo } from "next-seo";
 
 export default function Local(props) {
-  const producers = props.data.producers;
   return (
     <>
       <NextSeo
         title={props.title}
         titleTemplate="%s | Seven Hills Restaurant"
         description={props.description}
-        additionalMetaTags={[
-          {
-            name: "keywords",
-            content: props.keywords,
-          },
-        ]}
         openGraph={{
           description: props.description,
         }}
@@ -36,10 +37,10 @@ export default function Local(props) {
           </div>
         </div>
         <BackToTop />
-        {producers.map((p) => {
+        {props.producers.map((p) => {
           return (
             <>
-              <ImageBlock props={p} cmsURL={props.cmsURL} />
+              <ImageBlock props={p} />
             </>
           );
         })}
@@ -49,35 +50,67 @@ export default function Local(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const data = await getProducers();
-  const dataLocal = await getLocal();
+  // Get data from CMS
+  const local = await fetchItems("Local");
+  const localTrans = await fetchItems("Local_translations");
+  const allProducers = await fetchItems("Producers");
+  const allProducersTrans = await fetchItems("Producers_translations");
 
-  const title =
-    locale === "en" ? dataLocal.local.title_en : dataLocal.local.title_de;
-  const content =
-    locale === "en" ? dataLocal.local.content_en : dataLocal.local.content_de;
-
+  // Get page texts by locale
+  const localDe = localTrans.filter((item) => {
+    return item.languages_code === "de-DE";
+  });
+  const localEn = localTrans.filter((item) => {
+    return item.languages_code === "en-US";
+  });
+  const title = locale === "en" ? localEn[0].title : localDe[0].title;
+  const content = locale === "en" ? localEn[0].content : localDe[0].content;
   const description =
-    locale === "en"
-      ? dataLocal.local.SEO.metaDescription_en
-      : dataLocal.local.SEO.metaDescription_de;
+    locale === "en" ? localEn[0].description : localDe[0].description;
 
-  const keywords =
-    locale === "en"
-      ? dataLocal.local.SEO.keywords_en
-      : dataLocal.local.SEO.keywords_de;
+  // Get locale-specific producers data
+  const allProducersEn = allProducersTrans.filter((item) => {
+    return item.languages_code === "en-US";
+  });
+  const allProducersDe = allProducersTrans.filter((item) => {
+    return item.languages_code === "de-DE";
+  });
 
-  const cmsURL = process.env.CMS_URL;
+  const producers =
+    locale === "en"
+      ? allProducers.map((value, index) => {
+          return {
+            coverImageUrl: `${CMS_URL}/assets/${value.cover}`,
+            distance: value.distance,
+            link: value.link,
+            title: allProducersEn[index].title,
+            location: allProducersEn[index].location,
+            people: allProducersEn[index].people,
+            experience: allProducersEn[index].experience,
+            products: allProducersEn[index].products,
+          };
+        })
+      : allProducers.map((value, index) => {
+          return {
+            coverImageUrl: `${CMS_URL}/assets/${value.cover}`,
+            distance: value.distance,
+            link: value.link,
+            title: allProducersDe[index].title,
+            location: allProducersDe[index].location,
+            people: allProducersDe[index].people,
+            experience: allProducersDe[index].experience,
+            products: allProducersDe[index].products,
+          };
+        });
+
   return {
     props: {
-      description,
-      keywords,
-      cmsURL,
       title,
       content,
-      data,
+      description,
+      producers,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 300,
+    revalidate: 60,
   };
 }

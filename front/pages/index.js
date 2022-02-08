@@ -1,15 +1,15 @@
-/* eslint-disable react/react-in-jsx-scope */
+// Translations
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { getIndex } from "../lib/api";
-import NavBar from "../components/navbar";
-import Layout from "../components/layout";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
-import Button from "../components/button";
-import ButtonReservation from "../components/button-reservation";
+
+// API
+import { CMS_URL, fetchItems } from "../lib/api";
+
+// SEO
 import { NextSeo } from "next-seo";
-import { CMS_URL } from "../lib/api";
+
+// Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
   Autoplay,
   EffectFade,
@@ -21,11 +21,18 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
+// Components
+import NavBar from "../components/navbar";
+import Layout from "../components/layout";
+import Image from "next/image";
+import Button from "../components/button";
+import ButtonReservation from "../components/button-reservation";
+
 SwiperCore.use([Autoplay, EffectFade, Navigation, Pagination]);
 
 export default function Index(props) {
   const { t } = useTranslation("common");
-  const swiperSlides = props.slider.map(function (item, index) {
+  const swiperSlides = props.files.map(function (item, index) {
     return (
       <SwiperSlide>
         <div>
@@ -40,7 +47,7 @@ export default function Index(props) {
           )}
           <Image
             className="object-cover"
-            src={`${CMS_URL}${item.url}`}
+            src={`${CMS_URL}/assets/${item.directus_files_id}`}
             alt={item.alternativeText}
             layout="fill"
             priority={index == 0 ? true : false}
@@ -54,12 +61,6 @@ export default function Index(props) {
     <>
       <NextSeo
         description={props.description}
-        additionalMetaTags={[
-          {
-            name: "keywords",
-            content: props.keywords,
-          },
-        ]}
         openGraph={{
           description: props.description,
         }}
@@ -77,7 +78,7 @@ export default function Index(props) {
                 dynamicBullets: true,
               }}
               autoplay={{
-                delay: 4000,
+                delay: 5000,
                 disableOnInteraction: true,
               }}
               loop={true}
@@ -96,24 +97,25 @@ export default function Index(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const data = await getIndex();
+  // Get data from CMS
+  const files = await fetchItems("Homepage_files");
+  const trans = await fetchItems("Homepage_translations");
 
-  const description =
-    locale === "en"
-      ? data.index.SEO.metaDescription_en
-      : data.index.SEO.metaDescription_de;
+  // Get texts by locale
+  const de = trans.filter((obj) => {
+    return obj.languages_code === "de-DE";
+  });
+  const en = trans.filter((obj) => {
+    return obj.languages_code === "en-US";
+  });
+  const description = locale === "en" ? en[0].description : de[0].description;
 
-  const keywords =
-    locale === "en" ? data.index.SEO.keywords_en : data.index.SEO.keywords_de;
-
-  const slider = data.index.slider;
   return {
     props: {
+      files,
       description,
-      keywords,
-      slider,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 120,
+    revalidate: 60,
   };
 }

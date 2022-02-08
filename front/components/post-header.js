@@ -1,9 +1,8 @@
-import Date from '../components/date'
-import CoverImage from '../components/cover-image'
-import PostTitle from '../components/post-title'
+import Date from "../components/date";
+import CoverImage from "../components/cover-image";
+import PostTitle from "../components/post-title";
 
 export default function PostHeader({ title, coverImage, date }) {
-  console.log(coverImage)
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -16,5 +15,5 @@ export default function PostHeader({ title, coverImage, date }) {
         </div>
       </div>
     </>
-  )
+  );
 }

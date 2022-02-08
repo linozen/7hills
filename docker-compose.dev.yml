@@ -3,21 +3,45 @@ version: "3.7"
 
 services:
   # ===========================================================================
-  # 7hills-back (http://localhost:1337)
+  # 7hills-cms (http://localhost:8055)
   # ===========================================================================
-  7hills-back:
-    image: 7hills-back:dev
-    container_name: 7hills-back
-    build:
-      context: back
-      target: dev
+  cms-cache:
+    container_name: 7hills-cms-cache
+    image: redis:6
+    networks:
+      - cms
+
+  cms:
+    container_name: 7hills-cms
+    image: directus/directus:9
     ports:
-      - "1337:1337"
-    environment:
-      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+      - 8055:8055
     volumes:
-      - "./back:/app"
-      - "./db.sqlite:/db.sqlite"
+      # By default, uploads are stored in /directus/uploads
+      # Always make sure your volumes matches the storage root when using
+      # local driver
+      - ./cms/uploads:/directus/uploads
+      # Make sure to also mount the volume when using SQLite
+      - ./cms/database:/directus/database
+    networks:
+      - cms
+    depends_on:
+      - cms-cache
+    environment:
+      KEY: "255d861b-5ea1-5996-9aa3-922530ec40b1"
+      SECRET: "${CMS_SECRET:?err}"
+
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/cms.sqlite"
+
+      CACHE_ENABLED: "true"
+      CACHE_STORE: "redis"
+      CACHE_REDIS: "redis://cms-cache:6379"
+      CACHE_AUTO_PURGE: "true"
+      CACHE_TTL: "1m"
+
+      ADMIN_EMAIL: "admin@sehn.dev"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:?err}"
 
   # ===========================================================================
   # 7hills-front (http://localhost:3000)
@@ -25,10 +49,14 @@ services:
   7hills-front:
     image: 7hills-front:dev
     container_name: 7hills-front
+    network_mode: host
     build:
       context: front
       target: dev
-    ports:
-      - "3000:3000"
+    depends_on:
+      - cms
     volumes:
       - "./front:/app"
+
+networks:
+  cms:

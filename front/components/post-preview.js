@@ -1,5 +1,6 @@
-import Date from './date'
-import Link from 'next/link'
+import Date from "./date";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function PostPreview({
   title,
@@ -13,7 +14,12 @@ export default function PostPreview({
       <div className="overflow-hidden border border-gold-500 relative h-72 md:h-80 lg:h-96 w-full mb-5">
         <Link as={`/soul/${slug}`} href="/soul/[slug]">
           <a className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center">
-            <img className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center" alt="producer-image" src={coverImageUrl} loading="lazy" />
+            <Image
+              className="w-full h-72 md:h-80 w-min-full lg:h-96 object-cover object-center"
+              alt="producer-image"
+              src={coverImageUrl}
+              layout="fill"
+            />
           </a>
         </Link>
       </div>
@@ -25,7 +31,9 @@ export default function PostPreview({
       <div className="lowercase text-xl mb-4 text-gold-500 font-light">
         <Date dateString={date} />
       </div>
-      <p className="font-serif text-gold-500 text-lg leading-relaxed mb-8">{excerpt}</p>
+      <p className="font-serif text-gold-500 text-lg leading-relaxed mb-8">
+        {excerpt}
+      </p>
     </div>
-  )
+  );
 }

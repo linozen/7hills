@@ -1,11 +1,17 @@
-/* eslint-disable react/react-in-jsx-scope */
+// Translations
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { getDaily } from "../lib/api";
+
+// API
+import { CMS_URL, fetchItems } from "../lib/api";
+
+// SEO
+import { NextSeo } from "next-seo";
+
+// Components
 import NavBar from "../components/navbar";
 import Layout from "../components/layout";
 import Menu from "../components/menu";
 import BackToTop from "../components/back-to-top";
-import { NextSeo } from "next-seo";
 
 export default function Daily(props) {
   return (
@@ -14,12 +20,6 @@ export default function Daily(props) {
         title={props.title}
         titleTemplate="%s | Seven Hills Restaurant"
         description={props.description}
-        additionalMetaTags={[
-          {
-            name: "keywords",
-            content: props.keywords,
-          },
-        ]}
         openGraph={{
           description: props.description,
         }}
@@ -34,24 +34,26 @@ export default function Daily(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  const data = await getDaily();
-  const title = locale === "en" ? data.daily.title_en : data.daily.title_de;
-  const content =
-    locale === "en" ? data.daily.content_en : data.daily.content_de;
+  // Get data from CMS
+  const daily = await fetchItems("Daily");
+  const dailyTrans = await fetchItems("Daily_translations");
 
+  // Get page texts by locale
+  const dailyDe = dailyTrans.filter((item) => {
+    return item.languages_code === "de-DE";
+  });
+  const dailyEn = dailyTrans.filter((item) => {
+    return item.languages_code === "en-US";
+  });
+  const title = locale === "en" ? dailyEn[0].title : dailyDe[0].title;
+  const content = locale === "en" ? dailyEn[0].content : dailyDe[0].content;
   const description =
-    locale === "en"
-      ? data.daily.SEO.metaDescription_en
-      : data.daily.SEO.metaDescription_de;
-
-  const keywords =
-    locale === "en" ? data.daily.SEO.keywords_en : data.daily.SEO.keywords_de;
+    locale === "en" ? dailyEn[0].description : dailyDe[0].description;
 
   return {
     props: {
       title,
       description,
-      keywords,
       content,
       ...(await serverSideTranslations(locale, ["common"])),
     },

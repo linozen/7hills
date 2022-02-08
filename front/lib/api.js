@@ -1,5 +1,18 @@
-const CMS_URL = process.env.CMS_URL || "http://api.sevenhills-restaurant.de";
+import { Directus } from "@directus/sdk";
+
+const CMS_URL = process.env.CMS_URL || "http://localhost:8055";
 export { CMS_URL };
+
+const cms = new Directus(CMS_URL);
+
+export async function fetchItems(item) {
+  try {
+    const publicData = await cms.items(item).readMany();
+    return publicData.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${CMS_URL}/graphql`, {

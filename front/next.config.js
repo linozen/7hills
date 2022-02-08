@@ -6,9 +6,9 @@ module.exports = {
   i18n,
   images: {
     domains: [
-      "localhost",
-      "api.sevenhills-restaurant.de",
-      "sevenhills-restaurant.de",
+      "localhost", // developement
+      "api.sevenhills-restaurant.de", // CMS (production)
+      "sevenhills-restaurant.de", // ./public
     ],
   },
 };
