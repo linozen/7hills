@@ -4,3 +4,6 @@
 [submodule "server/roles/ansible-openssh"]
 	path = server/roles/ansible-openssh
 	url = https://github.com/robertdebock/ansible-role-openssh.git
+[submodule "server/roles/ansible-fail2ban"]
+	path = server/roles/ansible-fail2ban
+	url = https://github.com/robertdebock/ansible-role-fail2ban.git
