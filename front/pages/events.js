@@ -84,7 +84,7 @@ export default function Events(props) {
 
         {/* Markdown Content */}
         <div id="content" className="w-full bg-blue-dark pt-12">
-          <div className="prose prose-lg md:prose-xl text-gold-500 px-5 mx-auto">
+          <div className="prose prose-lg md:prose-xl break-words text-gold-500 px-5 mx-auto">
             <ReactMarkdown>{props.content}</ReactMarkdown>
             <Button title={t("DOWNLOAD PDF")} link={props.pdfUrl} />
           </div>
