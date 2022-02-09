@@ -32,11 +32,10 @@ export default function ImageBlock({ props }) {
                 className="lg:mb-20 shadow-2xl w-full h-72 md:h-80 lg:h-96 border border-gold-500 overflow-hidden"
                 data-aos="fade-left"
               >
-                <Image
+                <img
                   className="h-72 md:h-80 lg:h-96 w-full object-cover object-center transition duration-1000 transform  hover:scale-110"
                   alt="producer-image"
                   src={props.coverImageUrl}
-                  layout="fill"
                 />
               </div>
             </a>
